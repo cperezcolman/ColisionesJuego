@@ -9,6 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Carlos Perez
+ */
 public class PanelJuego extends JPanel implements Runnable, KeyListener {
 
     public static final int ANCHO = 640;

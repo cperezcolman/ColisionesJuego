@@ -5,6 +5,9 @@ import mundo.Mundo;
 
 import java.awt.*;
 
+/**
+ * @author Carlos Perez
+ */
 public class Entidad {
 
     //constantes fisica

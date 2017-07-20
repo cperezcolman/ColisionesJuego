@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * @author Carlos Perez
+ */
 public class Mundo {
 
     private static final double RETRASO = 0.07;

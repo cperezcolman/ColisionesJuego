@@ -2,6 +2,9 @@ package main;
 
 import javax.swing.*;
 
+/**
+ * @author Carlos Perez
+ */
 public class Main {
 
     public static void main(String[] args) {

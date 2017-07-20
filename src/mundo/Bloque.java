@@ -1,11 +1,14 @@
 package mundo;
 
+/**
+ * @author Carlos Perez
+ */
 public class Bloque {
 
     public static final int TAMANO = 32;
 
-    protected int x;
-    protected int y;
+    private int x;
+    private int y;
     private int numeroBloque;
     private boolean bloqueado;
 
