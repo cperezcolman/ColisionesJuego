@@ -8,23 +8,10 @@ import java.awt.*;
 /**
  * @author Carlos Perez
  */
-public class Entidad {
+public class Entidad extends EntidadBasica {
 
-    //constantes fisica
+//    //constantes fisica
     private static final double GRAVEDAD = 0.5;
-    private static final double VELOCIDAD_SALTO = -12.0;
-
-    //ubicacion y tamano
-    private double x;
-    private double y;
-    private int ancho;
-    private int alto;
-
-    //ubicacion y tamano colision
-    private double xColision;
-    private double yColision;
-    private int anchoColision;
-    private int altoColision;
 
     //mover a la izquierda o derecha
     private boolean izquierda;
@@ -40,9 +27,9 @@ public class Entidad {
     private double velocidadX;
     private double aceleracion;
     private double maximaVelocidad;
-    private double velocidadY;
+    double velocidadY;
 
-    private boolean enElPiso;
+    boolean enElPiso;
     private boolean mirandoHaciaLaDerecha;
 
     private Mundo mundo;
@@ -198,19 +185,6 @@ public class Entidad {
                 (int) (y + mundo.getY() + yColision),
                 ancho - (ancho - anchoColision),
                 alto - (alto - altoColision));
-    }
-
-    public void saltar() {
-        if (enElPiso) {
-            velocidadY = VELOCIDAD_SALTO;
-            enElPiso = false;
-        }
-    }
-
-    public void pararSalto() {
-        if (velocidadY < (VELOCIDAD_SALTO / 2.0)) {
-            velocidadY = (VELOCIDAD_SALTO / 2.0);
-        }
     }
 
     public void setIzquierda(boolean izquierda) {

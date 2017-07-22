@@ -1,6 +1,7 @@
 package main;
 
 import entidad.Entidad;
+import entidad.Jugador;
 import mundo.Mundo;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     private Graphics2D grafico;
 
     private Mundo mundo;
-    private Entidad entidad;
+    private Jugador entidad;
 
     PanelJuego() {
 
@@ -60,7 +61,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
         mundo = new Mundo("recursos/mapa.map");
         mundo.establecerPosicion(0, 0);
 
-        entidad = new Entidad(mundo);
+        entidad = new Jugador(mundo);
 
         long tiempoInicio;
         long tiempoTranscurrido;
