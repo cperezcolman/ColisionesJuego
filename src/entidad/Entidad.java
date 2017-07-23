@@ -24,33 +24,18 @@ public class Entidad extends EntidadBasica {
     private int limiteAbajo;
 
     //fisica
-    private double velocidadX;
-    private double aceleracion;
-    private double maximaVelocidad;
+    double velocidadX;
+    double aceleracion;
+    double maximaVelocidad;
     double velocidadY;
 
     boolean enElPiso;
     private boolean mirandoHaciaLaDerecha;
 
-    private Mundo mundo;
+    Mundo mundo;
 
     public Entidad(Mundo mundo) {
         this.mundo = mundo;
-
-        x = 0;
-        y = 0;
-        ancho = 32;
-        alto = 32;
-
-        xColision = 0;
-        yColision = 0;
-        anchoColision = 32;
-        altoColision = 32;
-
-        velocidadX = 0;
-        aceleracion = 0.2;
-        maximaVelocidad = 4.4;
-
     }
 
     public void actualizar() {
@@ -174,17 +159,6 @@ public class Entidad extends EntidadBasica {
 
             }
         }
-    }
-
-    public void dibujar(Graphics2D g) {
-        g.setColor(Color.CYAN);
-        g.drawRect((int) (x + mundo.getX()), (int) (y + mundo.getY()), ancho, alto);
-
-        g.setColor(Color.BLUE);
-        g.drawRect((int) (x + mundo.getX() + xColision),
-                (int) (y + mundo.getY() + yColision),
-                ancho - (ancho - anchoColision),
-                alto - (alto - altoColision));
     }
 
     public void setIzquierda(boolean izquierda) {

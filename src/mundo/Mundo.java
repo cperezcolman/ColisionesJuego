@@ -153,7 +153,7 @@ public class Mundo {
                     continue;
                 }
 
-                g.setColor(Color.BLACK);
+                g.setColor(Color.DARK_GRAY);
                 g.drawRect(x + columna * Bloque.TAMANO, y + fila * Bloque.TAMANO, Bloque.TAMANO, Bloque.TAMANO);
             }
         }

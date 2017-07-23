@@ -1,13 +1,33 @@
 package entidad;
 
+/**
+ * @author Carlos Perez
+ */
+
 import mundo.Mundo;
 
-public class Jugador extends Entidad{
+import java.awt.*;
+
+public class Jugador extends Entidad {
 
     private static final double VELOCIDAD_SALTO = -12.0;
 
     public Jugador(Mundo mundo) {
         super(mundo);
+
+        x = 0;
+        y = 0;
+        ancho = 32;
+        alto = 32;
+
+        xColision = 0;
+        yColision = 0;
+        anchoColision = ancho;
+        altoColision = alto;
+
+        velocidadX = 0;
+        aceleracion = 0.2;
+        maximaVelocidad = 4.4;
     }
 
     public void saltar() {
@@ -21,5 +41,18 @@ public class Jugador extends Entidad{
         if (velocidadY < (VELOCIDAD_SALTO / 2.0)) {
             velocidadY = (VELOCIDAD_SALTO / 2.0);
         }
+    }
+
+    public void dibujar(Graphics2D g) {
+
+        g.setColor(Color.CYAN);
+        g.drawRect((int) (x + mundo.getX() + xColision),
+                (int) (y + mundo.getY() + yColision),
+                ancho - (ancho - anchoColision),
+                alto - (alto - altoColision));
+
+        g.setColor(Color.BLUE);
+        g.drawRect((int) (x + mundo.getX()), (int) (y + mundo.getY()), ancho, alto);
+
     }
 }

@@ -1,5 +1,8 @@
 package entidad;
 
+/**
+ * @author Carlos Perez
+ */
 public class EntidadBasica {
 
     //ubicacion y tamano

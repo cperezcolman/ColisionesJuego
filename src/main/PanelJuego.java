@@ -1,8 +1,6 @@
 package main;
 
-import entidad.Entidad;
-import entidad.Jugador;
-import mundo.Mundo;
+import nivel.ManejadorNiveles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +24,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     private BufferedImage imagen;
     private Graphics2D grafico;
 
-    private Mundo mundo;
-    private Jugador entidad;
+    private ManejadorNiveles manejadorNivelesNiveles;
 
     PanelJuego() {
 
@@ -58,10 +55,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
         imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
         grafico = (Graphics2D) imagen.getGraphics();
 
-        mundo = new Mundo("recursos/mapa.map");
-        mundo.establecerPosicion(0, 0);
-
-        entidad = new Jugador(mundo);
+        manejadorNivelesNiveles = ManejadorNiveles.getInstance();
 
         long tiempoInicio;
         long tiempoTranscurrido;
@@ -80,6 +74,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
 
             pausar(tiempoPausa);
 
+
         }
 
     }
@@ -95,18 +90,12 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     }
 
     private void actualizar() {
-        entidad.actualizar();
-        mundo.establecerPosicion((int) (ANCHO / 2 - entidad.getX() - 32 - entidad.getAncho() / 2),
-                (int) (ALTO / 2 - entidad.getY() - entidad.getAlto() / 2));
+        manejadorNivelesNiveles.actualizar();
     }
 
     private void dibujar() {
-        grafico.setColor(Color.LIGHT_GRAY);
-        grafico.fillRect(0, 0, ANCHO, ALTO);
 
-        mundo.dibujar(grafico);
-
-        entidad.dibujar(grafico);
+        manejadorNivelesNiveles.dibujar(grafico);
 
     }
 
@@ -124,31 +113,13 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int k = e.getKeyCode();
-        if (k == KeyEvent.VK_LEFT) {
-            entidad.setIzquierda(true);
-            entidad.setDerecha(false);
-        }
-        if (k == KeyEvent.VK_RIGHT) {
-            entidad.setDerecha(true);
-            entidad.setIzquierda(false);
-        }
-        if (k == KeyEvent.VK_UP) {
-            entidad.saltar();
-        }
+        manejadorNivelesNiveles.keyPressed(k);
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         int k = e.getKeyCode();
-        if (k == KeyEvent.VK_LEFT) {
-            entidad.setIzquierda(false);
-        }
-        if (k == KeyEvent.VK_RIGHT) {
-            entidad.setDerecha(false);
-        }
-        if (k == KeyEvent.VK_UP) {
-            entidad.pararSalto();
-        }
+        manejadorNivelesNiveles.keyReleased(k);
     }
 }
