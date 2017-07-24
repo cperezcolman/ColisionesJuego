@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Carlos Perez
@@ -58,36 +61,18 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
 
         manejadorNivelesNiveles = ManejadorNiveles.getInstance();
 
-        long tiempoInicio;
-        long tiempoTranscurrido;
-        long tiempoPausa;
+        long retraso = 1000 / FPS;
 
-        while (true) {
-
-            tiempoInicio = System.currentTimeMillis();
-
-            actualizar();
-            dibujar();
-            mostrarEnPantalla();
-
-            tiempoTranscurrido = System.currentTimeMillis() - tiempoInicio;
-            tiempoPausa = 1000 / FPS - tiempoTranscurrido;
-
-            pausar(tiempoPausa);
-
-
-        }
-
-    }
-
-    private void pausar(long pausa) {
-        if (pausa > 0) {
-            try {
-                Thread.sleep(pausa);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        ScheduledExecutorService movimiento = Executors.newSingleThreadScheduledExecutor();
+        movimiento.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                actualizar();
+                dibujar();
+                mostrarEnPantalla();
             }
-        }
+        }, 0, retraso, TimeUnit.MILLISECONDS);
+
     }
 
     private void actualizar() {
