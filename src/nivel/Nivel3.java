@@ -30,6 +30,7 @@ public class Nivel3 extends Nivel{
         jugador.actualizar();
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - 32 - jugador.getAncho() / 2),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
+        
 
     }
 
