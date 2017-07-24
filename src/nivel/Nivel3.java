@@ -6,7 +6,7 @@ public class Nivel3 extends Nivel {
 
     public Nivel3() {
         super("recursos/nivel3.map");
-        fondo.setColor(Color.WHITE);
+        fondo.setColor(Color.DARK_GRAY);
     }
 
     @Override

@@ -3,7 +3,6 @@ package entidad;
 /**
  * @author Carlos Perez
  */
-
 import manejador.Teclado;
 import mundo.Mundo;
 

@@ -8,7 +8,7 @@ public class Nivel2 extends Nivel{
 
     public Nivel2() {
         super("recursos/nivel2.map");
-        fondo.setColor(Color.BLACK);
+        fondo.setColor(Color.GRAY);
     }
 
     @Override
