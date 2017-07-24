@@ -4,6 +4,7 @@ import entidad.Jugador;
 import mundo.Fondo;
 import mundo.Mundo;
 import mundo.FondoNegroConTexto;
+import sun.awt.SunToolkit;
 
 import java.awt.*;
 
@@ -12,12 +13,16 @@ import static main.PanelJuego.ANCHO;
 
 public abstract class Nivel {
 
+    private static final int CANTIDAD_TIEMPO = 30;
     private static int contadorNivel = 0;
 
     private FondoNegroConTexto fondoNegroConTexto;
     Mundo mundo;
     Jugador jugador;
     Fondo fondo;
+    private int tiempo;
+    private boolean iniciado;
+    private long tiempoIniciado;
 
     Nivel(String ubicacionMapa) {
 
@@ -28,6 +33,8 @@ public abstract class Nivel {
         fondo = new Fondo();
         contadorNivel++;
         fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
+
+        tiempo = CANTIDAD_TIEMPO;
     }
 
     void cambiarNivel(Nivel nivel) {
@@ -35,11 +42,20 @@ public abstract class Nivel {
         manejadorNivelesNiveles.establecerNivel(nivel);
     }
 
+
     protected void actualizar() {
 
         if (!fondoNegroConTexto.yaTermino()) {
             fondoNegroConTexto.actualizar();
             return;
+        }
+
+        if (iniciado) {
+            long transcurrido = (System.currentTimeMillis() - tiempoIniciado) / 1000;
+            tiempo = (int) (CANTIDAD_TIEMPO - transcurrido);
+        } else {
+            tiempoIniciado = System.currentTimeMillis();
+            iniciado = true;
         }
 
         manejarEntrada();
@@ -59,7 +75,8 @@ public abstract class Nivel {
         g.setColor(Color.WHITE);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 15);
         g.setFont(font);
-        g.drawString("Nivel " + contadorNivel, 10, 20);
+        g.drawString("Nivel: " + contadorNivel, 10, 20);
+        g.drawString("Tiempo: " + tiempo, 10, 40);
     }
 
     private void manejarEntrada(){

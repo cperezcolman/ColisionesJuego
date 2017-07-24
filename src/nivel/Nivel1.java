@@ -1,7 +1,5 @@
 package nivel;
 
-import mundo.Bloque;
-
 import java.awt.*;
 
 public class Nivel1 extends Nivel {

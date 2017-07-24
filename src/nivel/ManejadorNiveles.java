@@ -7,7 +7,7 @@ import java.awt.*;
 public class ManejadorNiveles {
 
     private FondoNegroConTexto fondoNegroConTexto;
-    private boolean terminado;
+    private boolean juegoTerminado;
     private Nivel nivelActual;
     private static final ManejadorNiveles instancia = new ManejadorNiveles();
 
@@ -17,7 +17,7 @@ public class ManejadorNiveles {
 
     private ManejadorNiveles() {
         nivelActual = new Nivel1();
-        terminado = false;
+        juegoTerminado = false;
         fondoNegroConTexto = new FondoNegroConTexto("Game Over");
     }
 
@@ -26,22 +26,21 @@ public class ManejadorNiveles {
     }
 
     public void actualizar() {
-        if (terminado) {
+        if (juegoTerminado) {
             return;
         }
         nivelActual.actualizar();
-
     }
 
     public void dibujar(Graphics2D g) {
-        if (terminado) {
+        if (juegoTerminado) {
             fondoNegroConTexto.dibujar(g);
             return;
         }
         nivelActual.dibujar(g);
     }
 
-    public void setTerminado(boolean terminado) {
-        this.terminado = terminado;
+    public void terminarJuego() {
+        juegoTerminado = true;
     }
 }

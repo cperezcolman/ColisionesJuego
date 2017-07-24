@@ -16,7 +16,7 @@ public class Nivel3 extends Nivel {
         super.actualizar();
         if (jugador.getX() >= (mundo.getBloques()[0].length * Bloque.TAMANO) - Bloque.TAMANO) {
             ManejadorNiveles manejadorNivelesNiveles = ManejadorNiveles.getInstance();
-            manejadorNivelesNiveles.setTerminado(true);
+            manejadorNivelesNiveles.terminarJuego();
         }
     }
 

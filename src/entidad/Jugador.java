@@ -11,6 +11,7 @@ import java.awt.*;
 public class Jugador extends Entidad {
 
     private static final double VELOCIDAD_SALTO = -12.0;
+    private int cantidadVidas;
 
     public Jugador(Mundo mundo) {
         super(mundo);
@@ -28,6 +29,8 @@ public class Jugador extends Entidad {
         velocidadX = 0;
         aceleracion = 0.2;
         maximaVelocidad = 4.4;
+
+        cantidadVidas = 5;
     }
 
     private void saltar() {
@@ -64,6 +67,10 @@ public class Jugador extends Entidad {
         g.setColor(Color.BLUE);
         g.drawRect((int) (x + mundo.getX()), (int) (y + mundo.getY()), ancho, alto);
 
+    }
+
+    public void disminuirVida() {
+        cantidadVidas--;
     }
 
 }
