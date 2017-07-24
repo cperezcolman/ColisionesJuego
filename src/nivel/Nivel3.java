@@ -1,11 +1,9 @@
 package nivel;
 
 import entidad.Jugador;
-import mundo.Bloque;
 import mundo.Mundo;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
@@ -30,7 +28,6 @@ public class Nivel3 extends Nivel{
         jugador.actualizar();
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - 32 - jugador.getAncho() / 2),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
-        
 
     }
 

@@ -5,7 +5,6 @@ import mundo.Bloque;
 import mundo.Mundo;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
