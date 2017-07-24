@@ -4,14 +4,13 @@ import java.awt.*;
 
 public abstract class Nivel {
 
-    ManejadorNiveles manejadorNivelesNiveles;
+    void cambiarNivel(Nivel nivel) {
+        ManejadorNiveles manejadorNivelesNiveles = ManejadorNiveles.getInstance();
+        manejadorNivelesNiveles.establecerNivel(nivel);
+    }
 
     abstract void actualizar();
 
     abstract void dibujar(Graphics2D g);
-
-    abstract void keyPressed(int k);
-
-    abstract void keyReleased(int k);
 
 }

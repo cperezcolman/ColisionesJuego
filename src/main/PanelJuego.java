@@ -1,5 +1,6 @@
 package main;
 
+import manejador.Teclado;
 import nivel.ManejadorNiveles;
 
 import javax.swing.*;
@@ -91,6 +92,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
 
     private void actualizar() {
         manejadorNivelesNiveles.actualizar();
+        Teclado.actualizar();
     }
 
     private void dibujar() {
@@ -113,13 +115,12 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int k = e.getKeyCode();
-        manejadorNivelesNiveles.keyPressed(k);
-
+        Teclado.establecerEstado(k, true);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         int k = e.getKeyCode();
-        manejadorNivelesNiveles.keyReleased(k);
+        Teclado.establecerEstado(k, false);
     }
 }

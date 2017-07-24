@@ -5,12 +5,11 @@ import mundo.Bloque;
 import mundo.Mundo;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
-public class Nivel1 extends Nivel{
+public class Nivel1 extends Nivel {
 
     private Mundo mundo;
     private Jugador jugador;
@@ -26,14 +25,20 @@ public class Nivel1 extends Nivel{
 
     @Override
     public void actualizar() {
+
+        manejarEntrada();
+
         jugador.actualizar();
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - 32 - jugador.getAncho() / 2),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
 
         if (jugador.getX() >= (mundo.getBloques()[0].length * Bloque.TAMANO) - Bloque.TAMANO) {
-            manejadorNivelesNiveles = ManejadorNiveles.getInstance();
-            manejadorNivelesNiveles.establecerNivel(new Nivel2());
+            cambiarNivel(new Nivel2());
         }
+    }
+
+    private void manejarEntrada() {
+        jugador.manejarEntrada();
     }
 
     @Override
@@ -42,34 +47,6 @@ public class Nivel1 extends Nivel{
         g.fillRect(0, 0, ANCHO, ALTO);
         mundo.dibujar(g);
         jugador.dibujar(g);
-    }
-
-    @Override
-    public void keyPressed(int k) {
-        if (k == KeyEvent.VK_LEFT) {
-            jugador.setIzquierda(true);
-            jugador.setDerecha(false);
-        }
-        if (k == KeyEvent.VK_RIGHT) {
-            jugador.setDerecha(true);
-            jugador.setIzquierda(false);
-        }
-        if (k == KeyEvent.VK_UP) {
-            jugador.saltar();
-        }
-    }
-
-    @Override
-    public void keyReleased(int k) {
-        if (k == KeyEvent.VK_LEFT) {
-            jugador.setIzquierda(false);
-        }
-        if (k == KeyEvent.VK_RIGHT) {
-            jugador.setDerecha(false);
-        }
-        if (k == KeyEvent.VK_UP) {
-            jugador.pararSalto();
-        }
     }
 
 }

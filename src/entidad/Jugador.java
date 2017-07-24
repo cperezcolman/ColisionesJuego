@@ -4,6 +4,7 @@ package entidad;
  * @author Carlos Perez
  */
 
+import manejador.Teclado;
 import mundo.Mundo;
 
 import java.awt.*;
@@ -40,6 +41,16 @@ public class Jugador extends Entidad {
     public void pararSalto() {
         if (velocidadY < (VELOCIDAD_SALTO / 2.0)) {
             velocidadY = (VELOCIDAD_SALTO / 2.0);
+        }
+    }
+
+    public void manejarEntrada() {
+        izquierda = Teclado.estado[Teclado.IZQUIERDA];
+        derecha = Teclado.estado[Teclado.DERECHA];
+        if (Teclado.estado[Teclado.ARRIBA]) {
+            saltar();
+        } else {
+            pararSalto();
         }
     }
 

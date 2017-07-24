@@ -3,19 +3,17 @@ package entidad;
 import mundo.Bloque;
 import mundo.Mundo;
 
-import java.awt.*;
-
 /**
  * @author Carlos Perez
  */
 public class Entidad extends EntidadBasica {
 
-//    //constantes fisica
+    //constantes fisica
     private static final double GRAVEDAD = 0.5;
 
     //mover a la izquierda o derecha
-    private boolean izquierda;
-    private boolean derecha;
+    boolean izquierda;
+    boolean derecha;
 
     //limite de la figura
     private int limiteIzquierda;
@@ -117,7 +115,6 @@ public class Entidad extends EntidadBasica {
         limiteIzquierda = 0;
         limiteDerecha = mundo.getBloques()[0].length * Bloque.TAMANO;
 
-
         Bloque bloque;
 
         for (int i = bloqueInterseccionArriba; i <= bloqueInterseccionAbajo; i++) {
@@ -159,14 +156,6 @@ public class Entidad extends EntidadBasica {
 
             }
         }
-    }
-
-    public void setIzquierda(boolean izquierda) {
-        this.izquierda = izquierda;
-    }
-
-    public void setDerecha(boolean derecha) {
-        this.derecha = derecha;
     }
 
     public double getX() {

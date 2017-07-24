@@ -10,14 +10,14 @@ import java.awt.event.KeyEvent;
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
-public class Nivel2 extends Nivel{
+public class Nivel3 extends Nivel{
 
     private Mundo mundo;
     private Jugador jugador;
 
-    public Nivel2() {
+    public Nivel3() {
 
-        mundo = new Mundo("recursos/nivel2.map");
+        mundo = new Mundo("recursos/nivel3.map");
         mundo.establecerPosicion(0, 0);
 
         jugador = new Jugador(mundo);
@@ -31,9 +31,6 @@ public class Nivel2 extends Nivel{
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - 32 - jugador.getAncho() / 2),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
 
-        if (jugador.getX() >= (mundo.getBloques()[0].length * Bloque.TAMANO) - Bloque.TAMANO) {
-            cambiarNivel(new Nivel3());
-        }
     }
 
     private void manejarEntrada() {
@@ -42,11 +39,10 @@ public class Nivel2 extends Nivel{
 
     @Override
     public void dibujar(Graphics2D g) {
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, ANCHO, ALTO);
         mundo.dibujar(g);
         jugador.dibujar(g);
     }
-
 
 }
