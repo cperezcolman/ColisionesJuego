@@ -16,7 +16,7 @@ public class Nivel1 extends Nivel {
 
         super.actualizar();
 
-        if (jugador.getX() >= (mundo.getBloques()[0].length * Bloque.TAMANO) - Bloque.TAMANO) {
+        if (jugador.llegoAlFinal()) {
             cambiarNivel(new Nivel2());
         }
     }

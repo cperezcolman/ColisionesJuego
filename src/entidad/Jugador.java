@@ -30,14 +30,14 @@ public class Jugador extends Entidad {
         maximaVelocidad = 4.4;
     }
 
-    public void saltar() {
+    private void saltar() {
         if (enElPiso) {
             velocidadY = VELOCIDAD_SALTO;
             enElPiso = false;
         }
     }
 
-    public void pararSalto() {
+    private void pararSalto() {
         if (velocidadY < (VELOCIDAD_SALTO / 2.0)) {
             velocidadY = (VELOCIDAD_SALTO / 2.0);
         }
@@ -65,4 +65,5 @@ public class Jugador extends Entidad {
         g.drawRect((int) (x + mundo.getX()), (int) (y + mundo.getY()), ancho, alto);
 
     }
+
 }

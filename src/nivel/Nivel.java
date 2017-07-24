@@ -3,7 +3,7 @@ package nivel;
 import entidad.Jugador;
 import mundo.Fondo;
 import mundo.Mundo;
-import mundo.FondoNegroConLetra;
+import mundo.FondoNegroConTexto;
 
 import java.awt.*;
 
@@ -12,9 +12,9 @@ import static main.PanelJuego.ANCHO;
 
 public abstract class Nivel {
 
-    public static int contadorNivel = 0;
+    private static int contadorNivel = 0;
 
-    FondoNegroConLetra fondoNegroConLetra;
+    private FondoNegroConTexto fondoNegroConTexto;
     Mundo mundo;
     Jugador jugador;
     Fondo fondo;
@@ -27,7 +27,7 @@ public abstract class Nivel {
         jugador = new Jugador(mundo);
         fondo = new Fondo();
         contadorNivel++;
-        fondoNegroConLetra = new FondoNegroConLetra(2000, "Nivel " + contadorNivel);
+        fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
     }
 
     void cambiarNivel(Nivel nivel) {
@@ -37,19 +37,20 @@ public abstract class Nivel {
 
     protected void actualizar() {
 
-        if (!fondoNegroConLetra.yaTermino()) {
-            fondoNegroConLetra.actualizar();
+        if (!fondoNegroConTexto.yaTermino()) {
+            fondoNegroConTexto.actualizar();
             return;
         }
+
         manejarEntrada();
         jugador.actualizar();
-        mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - 32 - jugador.getAncho() / 2),
+        mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - jugador.getAncho()),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
     }
 
     protected void dibujar(Graphics2D g) {
-        if (!fondoNegroConLetra.yaTermino()) {
-            fondoNegroConLetra.dibujar(g);
+        if (!fondoNegroConTexto.yaTermino()) {
+            fondoNegroConTexto.dibujar(g);
             return;
         }
         fondo.dibujar(g);
@@ -61,7 +62,7 @@ public abstract class Nivel {
         g.drawString("Nivel " + contadorNivel, 10, 20);
     }
 
-    protected void manejarEntrada(){
+    private void manejarEntrada(){
         jugador.manejarEntrada();
     }
 

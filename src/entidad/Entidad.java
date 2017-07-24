@@ -173,4 +173,8 @@ public class Entidad extends EntidadBasica {
     public int getAlto() {
         return alto;
     }
+
+    public boolean llegoAlFinal() {
+        return (x + ancho) >= (mundo.getBloques()[0].length * Bloque.TAMANO);
+    }
 }
