@@ -1,10 +1,10 @@
 package nivel;
 
+import entidad.EstadoJugador;
 import entidad.Jugador;
 import mundo.Fondo;
 import mundo.Mundo;
 import mundo.FondoNegroConTexto;
-import sun.awt.SunToolkit;
 
 import java.awt.*;
 
@@ -13,35 +13,38 @@ import static main.PanelJuego.ANCHO;
 
 public abstract class Nivel {
 
-    private static final int CANTIDAD_TIEMPO = 30;
+    private static final int CANTIDAD_TIEMPO = 10;
     private static int contadorNivel = 0;
 
     private FondoNegroConTexto fondoNegroConTexto;
-    Mundo mundo;
+
+    ManejadorJuego manejadorJuego;
+
+    private Mundo mundo;
     Jugador jugador;
     Fondo fondo;
+
     private int tiempo;
     private boolean iniciado;
     private long tiempoIniciado;
 
-    Nivel(String ubicacionMapa) {
+    Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa) {
+
+        this.manejadorJuego = manejadorJuego;
+
+        contadorNivel++;
 
         mundo = new Mundo(ubicacionMapa);
         mundo.establecerPosicion(0, 0);
 
         jugador = new Jugador(mundo);
+        jugador.setCantidadVidas(EstadoJugador.getCantidadVidas());
+
         fondo = new Fondo();
-        contadorNivel++;
         fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
 
         tiempo = CANTIDAD_TIEMPO;
     }
-
-    void cambiarNivel(Nivel nivel) {
-        ManejadorNiveles manejadorNivelesNiveles = ManejadorNiveles.getInstance();
-        manejadorNivelesNiveles.establecerNivel(nivel);
-    }
-
 
     protected void actualizar() {
 
@@ -56,6 +59,18 @@ public abstract class Nivel {
         } else {
             tiempoIniciado = System.currentTimeMillis();
             iniciado = true;
+        }
+
+        if (tiempo == 0) {
+            tiempo = CANTIDAD_TIEMPO;
+            jugador.disminuirVida();
+            iniciado = false;
+            fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
+            jugador.establecerPosicion(0, 0);
+        }
+
+        if (jugador.getCantidadVidas() == 0) {
+            manejadorJuego.terminarJuego();
         }
 
         manejarEntrada();
@@ -77,10 +92,10 @@ public abstract class Nivel {
         g.setFont(font);
         g.drawString("Nivel: " + contadorNivel, 10, 20);
         g.drawString("Tiempo: " + tiempo, 10, 40);
+        g.drawString("Vidas: " + jugador.getCantidadVidas(), 10, 60);
     }
 
     private void manejarEntrada(){
         jugador.manejarEntrada();
     }
-
 }

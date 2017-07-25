@@ -1,7 +1,8 @@
 package main;
 
 import manejador.Teclado;
-import nivel.ManejadorNiveles;
+import nivel.ManejadorJuego;
+import nivel.Nivel1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +29,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     private BufferedImage imagen;
     private Graphics2D grafico;
 
-    private ManejadorNiveles manejadorNivelesNiveles;
+    private ManejadorJuego manejadorNivelesJuego;
 
     PanelJuego() {
 
@@ -59,7 +60,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
         imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
         grafico = (Graphics2D) imagen.getGraphics();
 
-        manejadorNivelesNiveles = ManejadorNiveles.getInstance();
+        manejadorNivelesJuego = new ManejadorJuego();
 
         long retraso = 1000 / FPS;
 
@@ -76,13 +77,13 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     }
 
     private void actualizar() {
-        manejadorNivelesNiveles.actualizar();
+        manejadorNivelesJuego.actualizar();
         Teclado.actualizar();
     }
 
     private void dibujar() {
 
-        manejadorNivelesNiveles.dibujar(grafico);
+        manejadorNivelesJuego.dibujar(grafico);
 
     }
 

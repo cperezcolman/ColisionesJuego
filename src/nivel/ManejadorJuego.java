@@ -1,35 +1,32 @@
 package nivel;
 
+import entidad.EstadoJugador;
+import entidad.Jugador;
 import mundo.FondoNegroConTexto;
 
 import java.awt.*;
 
-public class ManejadorNiveles {
+public class ManejadorJuego {
 
     private FondoNegroConTexto fondoNegroConTexto;
     private boolean juegoTerminado;
     private Nivel nivelActual;
-    private static final ManejadorNiveles instancia = new ManejadorNiveles();
 
-    public static ManejadorNiveles getInstance() {
-        return instancia;
-    }
-
-    private ManejadorNiveles() {
-        nivelActual = new Nivel1();
+    public ManejadorJuego() {
+        EstadoJugador.iniciar();
         juegoTerminado = false;
         fondoNegroConTexto = new FondoNegroConTexto("Game Over");
+        nivelActual = new Nivel1(this);
     }
 
     void establecerNivel(Nivel nivelNuevo) {
-        this.nivelActual = nivelNuevo;
+        nivelActual = nivelNuevo;
     }
 
     public void actualizar() {
-        if (juegoTerminado) {
-            return;
+        if (!juegoTerminado) {
+            nivelActual.actualizar();
         }
-        nivelActual.actualizar();
     }
 
     public void dibujar(Graphics2D g) {
@@ -41,6 +38,6 @@ public class ManejadorNiveles {
     }
 
     public void terminarJuego() {
-        juegoTerminado = true;
+        this.juegoTerminado = true;
     }
 }

@@ -30,7 +30,7 @@ public class Jugador extends Entidad {
         aceleracion = 0.2;
         maximaVelocidad = 4.4;
 
-        cantidadVidas = 5;
+//        cantidadVidas = 5;
     }
 
     private void saltar() {
@@ -73,4 +73,16 @@ public class Jugador extends Entidad {
         cantidadVidas--;
     }
 
+    public int getCantidadVidas() {
+        return cantidadVidas;
+    }
+
+    public void establecerPosicion(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setCantidadVidas(int cantidadVidas) {
+        this.cantidadVidas = cantidadVidas;
+    }
 }

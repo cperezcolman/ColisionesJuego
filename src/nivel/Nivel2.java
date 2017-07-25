@@ -1,5 +1,6 @@
 package nivel;
 
+import entidad.EstadoJugador;
 import entidad.Jugador;
 import mundo.Bloque;
 import mundo.Fondo;
@@ -12,8 +13,8 @@ import static main.PanelJuego.ANCHO;
 
 public class Nivel2 extends Nivel{
 
-    public Nivel2() {
-        super("recursos/nivel2.map");
+    public Nivel2(ManejadorJuego manejadorJuego) {
+        super(manejadorJuego, "recursos/nivel2.map");
         fondo.setColor(Color.GRAY);
 
     }
@@ -24,7 +25,9 @@ public class Nivel2 extends Nivel{
         super.actualizar();
 
         if (jugador.llegoAlFinal()) {
-            cambiarNivel(new Nivel3());
+            EstadoJugador.setCantidadVidas(jugador.getCantidadVidas());
+            Nivel nivel3 = new Nivel3(manejadorJuego);
+            manejadorJuego.establecerNivel(nivel3);
         }
     }
 
