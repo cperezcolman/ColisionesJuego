@@ -1,7 +1,5 @@
-package nivel;
+package estado;
 
-import entidad.EstadoJugador;
-import entidad.Jugador;
 import mundo.FondoNegroConTexto;
 
 import java.awt.*;

@@ -1,6 +1,4 @@
-package nivel;
-
-import entidad.EstadoJugador;
+package estado;
 
 import java.awt.*;
 

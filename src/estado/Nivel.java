@@ -1,6 +1,5 @@
-package nivel;
+package estado;
 
-import entidad.EstadoJugador;
 import entidad.Jugador;
 import mundo.Fondo;
 import mundo.Mundo;

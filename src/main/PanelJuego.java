@@ -1,8 +1,7 @@
 package main;
 
 import manejador.Teclado;
-import nivel.ManejadorJuego;
-import nivel.Nivel1;
+import estado.ManejadorJuego;
 
 import javax.swing.*;
 import java.awt.*;

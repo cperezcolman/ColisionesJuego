@@ -1,4 +1,4 @@
-package entidad;
+package estado;
 
 public class EstadoJugador {
 

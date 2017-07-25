@@ -1,15 +1,6 @@
-package nivel;
-
-import entidad.EstadoJugador;
-import entidad.Jugador;
-import mundo.Bloque;
-import mundo.Fondo;
-import mundo.Mundo;
+package estado;
 
 import java.awt.*;
-
-import static main.PanelJuego.ALTO;
-import static main.PanelJuego.ANCHO;
 
 public class Nivel2 extends Nivel{
 
