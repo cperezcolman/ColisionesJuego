@@ -1,4 +1,6 @@
-package estado;
+package estado.nivel;
+
+import estado.ManejadorJuego;
 
 import java.awt.*;
 

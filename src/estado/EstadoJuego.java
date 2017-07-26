@@ -4,9 +4,9 @@ import java.awt.*;
 
 public abstract class EstadoJuego {
 
-    ManejadorJuego manejadorJuego;
+    protected ManejadorJuego manejadorJuego;
 
-    EstadoJuego(ManejadorJuego manejadorJuego) {
+    protected EstadoJuego(ManejadorJuego manejadorJuego) {
         this.manejadorJuego = manejadorJuego;
     }
 

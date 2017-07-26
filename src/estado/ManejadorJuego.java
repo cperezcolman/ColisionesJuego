@@ -1,5 +1,6 @@
 package estado;
 
+import estado.nivel.Nivel1;
 import mundo.FondoNegroConTexto;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ public class ManejadorJuego {
         estadoJuego = new Nivel1(this);
     }
 
-    void establecerEstado(EstadoJuego nuevoEstado) {
+    public void establecerEstado(EstadoJuego nuevoEstado) {
         estadoJuego = nuevoEstado;
     }
 
@@ -35,7 +36,7 @@ public class ManejadorJuego {
         estadoJuego.dibujar(g);
     }
 
-    void terminarJuego() {
+    public void terminarJuego() {
         this.juegoTerminado = true;
     }
 }

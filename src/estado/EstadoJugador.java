@@ -1,6 +1,6 @@
 package estado;
 
-class EstadoJugador {
+public class EstadoJugador {
 
     private static int cantidadVidas;
 
@@ -8,11 +8,11 @@ class EstadoJugador {
         cantidadVidas = 5;
     }
 
-    static int getCantidadVidas() {
+    public static int getCantidadVidas() {
         return cantidadVidas;
     }
 
-    static void setCantidadVidas(int cantidadVidas) {
+    public static void setCantidadVidas(int cantidadVidas) {
         EstadoJugador.cantidadVidas = cantidadVidas;
     }
 }

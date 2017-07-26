@@ -1,6 +1,9 @@
-package estado;
+package estado.nivel;
 
 import entidad.Jugador;
+import estado.EstadoJuego;
+import estado.EstadoJugador;
+import estado.ManejadorJuego;
 import mundo.Fondo;
 import mundo.Mundo;
 import mundo.FondoNegroConTexto;
@@ -10,7 +13,7 @@ import java.awt.*;
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
-public abstract class Nivel extends EstadoJuego{
+public abstract class Nivel extends EstadoJuego {
 
     private static final int CANTIDAD_TIEMPO = 10;
     private static int contadorNivel = 0;
@@ -22,7 +25,7 @@ public abstract class Nivel extends EstadoJuego{
     Fondo fondo;
 
     private int tiempo;
-    private boolean iniciado;
+    private boolean nivelIniciado;
     private long tiempoIniciado;
 
     Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa) {
@@ -50,18 +53,18 @@ public abstract class Nivel extends EstadoJuego{
             return;
         }
 
-        if (iniciado) {
+        if (nivelIniciado) {
             long transcurrido = (System.currentTimeMillis() - tiempoIniciado) / 1000;
             tiempo = (int) (CANTIDAD_TIEMPO - transcurrido);
         } else {
             tiempoIniciado = System.currentTimeMillis();
-            iniciado = true;
+            nivelIniciado = true;
         }
 
         if (tiempo == 0) {
             tiempo = CANTIDAD_TIEMPO;
             jugador.disminuirVida();
-            iniciado = false;
+            nivelIniciado = false;
             fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
             jugador.establecerPosicion(0, 0);
         }
@@ -99,7 +102,4 @@ public abstract class Nivel extends EstadoJuego{
         jugador.manejarEntrada();
     }
 
-    public Mundo getMundo() {
-        return mundo;
-    }
 }
