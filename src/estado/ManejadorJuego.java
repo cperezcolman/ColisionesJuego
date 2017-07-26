@@ -8,22 +8,22 @@ public class ManejadorJuego {
 
     private FondoNegroConTexto fondoNegroConTexto;
     private boolean juegoTerminado;
-    private Nivel nivelActual;
+    private EstadoJuego estadoJuego;
 
     public ManejadorJuego() {
         EstadoJugador.iniciar();
         juegoTerminado = false;
         fondoNegroConTexto = new FondoNegroConTexto("Game Over");
-        nivelActual = new Nivel1(this);
+        estadoJuego = new Nivel1(this);
     }
 
-    void establecerNivel(Nivel nivelNuevo) {
-        nivelActual = nivelNuevo;
+    void establecerEstado(EstadoJuego nuevoEstado) {
+        estadoJuego = nuevoEstado;
     }
 
     public void actualizar() {
         if (!juegoTerminado) {
-            nivelActual.actualizar();
+            estadoJuego.actualizar();
         }
     }
 
@@ -32,10 +32,10 @@ public class ManejadorJuego {
             fondoNegroConTexto.dibujar(g);
             return;
         }
-        nivelActual.dibujar(g);
+        estadoJuego.dibujar(g);
     }
 
-    public void terminarJuego() {
+    void terminarJuego() {
         this.juegoTerminado = true;
     }
 }

@@ -10,14 +10,12 @@ import java.awt.*;
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
-public abstract class Nivel {
+public abstract class Nivel extends EstadoJuego{
 
     private static final int CANTIDAD_TIEMPO = 10;
     private static int contadorNivel = 0;
 
     private FondoNegroConTexto fondoNegroConTexto;
-
-    ManejadorJuego manejadorJuego;
 
     private Mundo mundo;
     Jugador jugador;
@@ -29,7 +27,7 @@ public abstract class Nivel {
 
     Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa) {
 
-        this.manejadorJuego = manejadorJuego;
+        super(manejadorJuego);
 
         contadorNivel++;
 
@@ -45,7 +43,7 @@ public abstract class Nivel {
         tiempo = CANTIDAD_TIEMPO;
     }
 
-    protected void actualizar() {
+    public void actualizar() {
 
         if (!fondoNegroConTexto.yaTermino()) {
             fondoNegroConTexto.actualizar();
@@ -78,14 +76,17 @@ public abstract class Nivel {
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
     }
 
-    protected void dibujar(Graphics2D g) {
+    public void dibujar(Graphics2D g) {
+
         if (!fondoNegroConTexto.yaTermino()) {
             fondoNegroConTexto.dibujar(g);
             return;
         }
+
         fondo.dibujar(g);
         mundo.dibujar(g);
         jugador.dibujar(g);
+
         g.setColor(Color.WHITE);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 15);
         g.setFont(font);
@@ -96,5 +97,9 @@ public abstract class Nivel {
 
     private void manejarEntrada(){
         jugador.manejarEntrada();
+    }
+
+    public Mundo getMundo() {
+        return mundo;
     }
 }

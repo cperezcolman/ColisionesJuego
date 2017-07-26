@@ -28,7 +28,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     private BufferedImage imagen;
     private Graphics2D grafico;
 
-    private ManejadorJuego manejadorNivelesJuego;
+    private ManejadorJuego manejadorJuego;
 
     PanelJuego() {
 
@@ -59,7 +59,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
         imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
         grafico = (Graphics2D) imagen.getGraphics();
 
-        manejadorNivelesJuego = new ManejadorJuego();
+        manejadorJuego = new ManejadorJuego();
 
         long retraso = 1000 / FPS;
 
@@ -76,13 +76,13 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     }
 
     private void actualizar() {
-        manejadorNivelesJuego.actualizar();
+        manejadorJuego.actualizar();
         Teclado.actualizar();
     }
 
     private void dibujar() {
 
-        manejadorNivelesJuego.dibujar(grafico);
+        manejadorJuego.dibujar(grafico);
 
     }
 

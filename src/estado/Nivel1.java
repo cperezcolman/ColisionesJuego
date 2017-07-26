@@ -17,7 +17,7 @@ public class Nivel1 extends Nivel {
         if (jugador.llegoAlFinal()) {
             EstadoJugador.setCantidadVidas(jugador.getCantidadVidas());
             Nivel nivel2 = new Nivel2(manejadorJuego);
-            manejadorJuego.establecerNivel(nivel2);
+            manejadorJuego.establecerEstado(nivel2);
         }
     }
 

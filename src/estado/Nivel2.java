@@ -18,18 +18,13 @@ public class Nivel2 extends Nivel{
         if (jugador.llegoAlFinal()) {
             EstadoJugador.setCantidadVidas(jugador.getCantidadVidas());
             Nivel nivel3 = new Nivel3(manejadorJuego);
-            manejadorJuego.establecerNivel(nivel3);
+            manejadorJuego.establecerEstado(nivel3);
         }
-    }
-
-    protected void manejarEntrada() {
-        jugador.manejarEntrada();
     }
 
     @Override
     public void dibujar(Graphics2D g) {
         super.dibujar(g);
     }
-
 
 }
