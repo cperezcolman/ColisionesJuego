@@ -10,7 +10,7 @@ import java.awt.*;
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
-public class PantallaInicio extends EstadoJuego{
+public class PantallaInicio extends EstadoJuego {
 
     private int seleccionActual;
     private String[] opciones = {"Jugar", "Tutorial", "Salir"};
@@ -65,7 +65,7 @@ public class PantallaInicio extends EstadoJuego{
     private void dibujarOpciones(Graphics2D g) {
 
         Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
-        int inicioY = 300;
+        int posicionY = 300;
 
         for (int i = 0; i < opciones.length; i++) {
             String opcion = opciones[i];
@@ -75,7 +75,7 @@ public class PantallaInicio extends EstadoJuego{
                 g.setColor(Color.GRAY);
             }
 
-            FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, opcion, font, ANCHO, inicioY+=40);
+            FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, opcion, font, ANCHO, posicionY += 40);
         }
     }
 }
