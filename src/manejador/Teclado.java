@@ -4,25 +4,33 @@ import java.awt.event.KeyEvent;
 
 public class Teclado {
 
-    private static final int CANTIDAD_TECLAS = 3;
+    private static final int CANTIDAD_TECLAS = 5;
 
     public static boolean estado[] = new boolean[CANTIDAD_TECLAS];
     private static boolean estadoPrevio[] = new boolean[CANTIDAD_TECLAS];
 
     public static int ARRIBA = 0;
-    public static int IZQUIERDA = 1;
-    public static int DERECHA = 2;
+    public static int ABAJO = 1;
+    public static int IZQUIERDA = 2;
+    public static int DERECHA = 4;
+    public static int ENTER = 4;
 
     public static void establecerEstado(int i, boolean b) {
         switch (i) {
             case KeyEvent.VK_UP:
                 estado[ARRIBA] = b;
                 break;
+            case KeyEvent.VK_DOWN:
+                estado[ABAJO] = b;
+                break;
             case KeyEvent.VK_LEFT:
                 estado[IZQUIERDA] = b;
                 break;
             case KeyEvent.VK_RIGHT:
                 estado[DERECHA] = b;
+                break;
+            case KeyEvent.VK_ENTER:
+                estado[ENTER] = b;
                 break;
         }
     }

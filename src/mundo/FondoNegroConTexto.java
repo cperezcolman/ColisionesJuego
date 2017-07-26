@@ -47,20 +47,32 @@ public class FondoNegroConTexto extends Fondo{
     public void dibujar(Graphics2D g) {
         super.dibujar(g);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 50);
-        drawCenteredString(g, texto, new Rectangle(ANCHO, ALTO), font);
+        g.setColor(Color.WHITE);
+        dibujarTextoCentrado(g, texto, new Rectangle(ANCHO, ALTO), font);
     }
 
     public boolean yaTermino() {
         return termino;
     }
 
-    private void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
+    public static void dibujarTextoCentrado(Graphics g, String text, Rectangle rect, Font font) {
         FontMetrics metrics = g.getFontMetrics(font);
         int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
         int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
         g.setFont(font);
-        g.setColor(Color.WHITE);
         g.drawString(text, x, y);
+    }
+
+    public static void dibujarTextoCentradoHorizontalmente(Graphics g, String text, Font font, int ancho, int y) {
+        FontMetrics metrics = g.getFontMetrics(font);
+        int x = (ancho - metrics.stringWidth(text)) / 2;
+        g.setFont(font);
+        g.drawString(text, x, y);
+    }
+
+    public void reiniciar() {
+        iniciada = false;
+        termino = false;
     }
 
 }

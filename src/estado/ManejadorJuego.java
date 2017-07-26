@@ -15,7 +15,7 @@ public class ManejadorJuego {
         EstadoJugador.iniciar();
         juegoTerminado = false;
         fondoNegroConTexto = new FondoNegroConTexto("Game Over");
-        estadoJuego = new Nivel1(this);
+        estadoJuego = new PantallaInicio(this);
     }
 
     public void establecerEstado(EstadoJuego nuevoEstado) {

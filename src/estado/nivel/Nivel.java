@@ -65,8 +65,8 @@ public abstract class Nivel extends EstadoJuego {
             tiempo = CANTIDAD_TIEMPO;
             jugador.disminuirVida();
             nivelIniciado = false;
-            fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
             jugador.establecerPosicion(0, 0);
+            fondoNegroConTexto.reiniciar();
         }
 
         if (jugador.getCantidadVidas() == 0) {
