@@ -12,7 +12,7 @@ public class Teclado {
     public static int ARRIBA = 0;
     public static int ABAJO = 1;
     public static int IZQUIERDA = 2;
-    public static int DERECHA = 4;
+    public static int DERECHA = 3;
     public static int ENTER = 4;
 
     public static void establecerEstado(int i, boolean b) {

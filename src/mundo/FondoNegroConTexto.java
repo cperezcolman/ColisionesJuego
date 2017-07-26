@@ -12,21 +12,24 @@ public class FondoNegroConTexto extends Fondo{
     private long tiempoInicio;
     private boolean termino;
     private String texto;
+    private int tamano;
 
-    public FondoNegroConTexto(long duracion, String texto) {
+    public FondoNegroConTexto(long duracion, String texto, int tamano) {
         this.duracion = duracion;
         iniciada = false;
         termino = false;
         color = Color.BLACK;
         this.texto = texto;
+        this.tamano = tamano;
     }
 
-    public FondoNegroConTexto(String texto) {
+    public FondoNegroConTexto(String texto, int tamano) {
         this.duracion = 0;
         iniciada = false;
         termino = false;
         color = Color.BLACK;
         this.texto = texto;
+        this.tamano = tamano;
     }
 
     public void actualizar() {
@@ -46,7 +49,7 @@ public class FondoNegroConTexto extends Fondo{
     @Override
     public void dibujar(Graphics2D g) {
         super.dibujar(g);
-        Font font = new Font("Showcard Gothic", Font.PLAIN, 50);
+        Font font = new Font("Showcard Gothic", Font.PLAIN, tamano);
         g.setColor(Color.WHITE);
         dibujarTextoCentrado(g, texto, new Rectangle(ANCHO, ALTO), font);
     }

@@ -8,8 +8,7 @@ import java.awt.*;
 public class Nivel1 extends Nivel {
 
     public Nivel1(ManejadorJuego manejadorJuego) {
-        super(manejadorJuego, "recursos/nivel1.map");
-        fondo.setColor(Color.LIGHT_GRAY);
+        super(manejadorJuego, "recursos/nivel1.map", 1);
     }
 
     @Override

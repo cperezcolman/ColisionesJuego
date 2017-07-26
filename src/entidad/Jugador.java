@@ -29,8 +29,6 @@ public class Jugador extends Entidad {
         velocidadX = 0;
         aceleracion = 0.2;
         maximaVelocidad = 4.4;
-
-//        cantidadVidas = 5;
     }
 
     private void saltar() {
@@ -58,13 +56,13 @@ public class Jugador extends Entidad {
 
     public void dibujar(Graphics2D g) {
 
-        g.setColor(Color.CYAN);
+        g.setColor(Color.WHITE);
         g.drawRect((int) (x + mundo.getX() + xColision),
                 (int) (y + mundo.getY() + yColision),
                 ancho - (ancho - anchoColision),
                 alto - (alto - altoColision));
 
-        g.setColor(Color.BLUE);
+        g.setColor(Color.GREEN);
         g.drawRect((int) (x + mundo.getX()), (int) (y + mundo.getY()), ancho, alto);
 
     }

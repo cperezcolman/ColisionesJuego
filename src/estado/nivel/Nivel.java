@@ -3,6 +3,7 @@ package estado.nivel;
 import entidad.Jugador;
 import estado.EstadoJuego;
 import estado.EstadoJugador;
+import estado.GameOver;
 import estado.ManejadorJuego;
 import mundo.Fondo;
 import mundo.Mundo;
@@ -16,7 +17,6 @@ import static main.PanelJuego.ANCHO;
 public abstract class Nivel extends EstadoJuego {
 
     private static final int CANTIDAD_TIEMPO = 10;
-    private static int contadorNivel = 0;
 
     private FondoNegroConTexto fondoNegroConTexto;
 
@@ -27,12 +27,13 @@ public abstract class Nivel extends EstadoJuego {
     private int tiempo;
     private boolean nivelIniciado;
     private long tiempoIniciado;
+    private int nivel;
 
-    Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa) {
+    Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa, int nivel) {
 
         super(manejadorJuego);
 
-        contadorNivel++;
+        this.nivel = nivel;
 
         mundo = new Mundo(ubicacionMapa);
         mundo.establecerPosicion(0, 0);
@@ -41,7 +42,8 @@ public abstract class Nivel extends EstadoJuego {
         jugador.setCantidadVidas(EstadoJugador.getCantidadVidas());
 
         fondo = new Fondo();
-        fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + contadorNivel);
+        fondo.setColor(Color.BLACK);
+        fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + nivel, 30);
 
         tiempo = CANTIDAD_TIEMPO;
     }
@@ -70,7 +72,7 @@ public abstract class Nivel extends EstadoJuego {
         }
 
         if (jugador.getCantidadVidas() == 0) {
-            manejadorJuego.terminarJuego();
+            manejadorJuego.establecerEstado(new GameOver(manejadorJuego));
         }
 
         manejarEntrada();
@@ -93,7 +95,7 @@ public abstract class Nivel extends EstadoJuego {
         g.setColor(Color.WHITE);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 15);
         g.setFont(font);
-        g.drawString("Nivel: " + contadorNivel, 10, 20);
+        g.drawString("Nivel: " + nivel, 10, 20);
         g.drawString("Tiempo: " + tiempo, 10, 40);
         g.drawString("Vidas: " + jugador.getCantidadVidas(), 10, 60);
     }
