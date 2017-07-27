@@ -14,7 +14,7 @@ public class ListaOpciones {
     private int yInicio;
     private int separacion;
     private int seleccionActual;
-    private boolean enterApretado;
+    private boolean opcionSeleccionada;
 
     public ListaOpciones(String[] opciones, Font fuente, int yInicio, int separacion) {
         this.opciones = opciones;
@@ -24,7 +24,8 @@ public class ListaOpciones {
     }
 
     public void actualizar() {
-        enterApretado = Teclado.estado[Teclado.ENTER];
+
+        opcionSeleccionada = Teclado.estado[Teclado.ENTER];
 
         if (Teclado.esPresionado(Teclado.ARRIBA)) {
             if (seleccionActual > 0) {
@@ -47,7 +48,9 @@ public class ListaOpciones {
         int posicionY = yInicio;
 
         for (int i = 0; i < opciones.length; i++) {
+
             String opcion = opciones[i];
+
             if (seleccionActual == i) {
                 g.setColor(Color.WHITE);
             } else {
@@ -62,7 +65,7 @@ public class ListaOpciones {
         return seleccionActual;
     }
 
-    public boolean isEnterApretado() {
-        return enterApretado;
+    public boolean isOpcionSeleccionada() {
+        return opcionSeleccionada;
     }
 }

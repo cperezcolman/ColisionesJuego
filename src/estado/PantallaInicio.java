@@ -2,7 +2,6 @@ package estado;
 
 import estado.nivel.Nivel;
 import estado.nivel.Nivel1;
-import manejador.Teclado;
 import mundo.FondoNegroConTexto;
 
 import java.awt.*;
@@ -25,7 +24,7 @@ public class PantallaInicio extends EstadoJuego {
     public void actualizar() {
         listaOpciones.actualizar();
 
-        if (listaOpciones.isEnterApretado()) {
+        if (listaOpciones.isOpcionSeleccionada()) {
             seleccionar();
         }
 

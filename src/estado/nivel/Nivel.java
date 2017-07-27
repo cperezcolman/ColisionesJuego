@@ -5,9 +5,11 @@ import estado.EstadoJuego;
 import estado.EstadoJugador;
 import estado.GameOver;
 import estado.ManejadorJuego;
+import manejador.Teclado;
 import mundo.Fondo;
 import mundo.Mundo;
 import mundo.FondoNegroConTexto;
+import sun.awt.SunToolkit;
 
 import java.awt.*;
 
@@ -16,7 +18,7 @@ import static main.PanelJuego.ANCHO;
 
 public abstract class Nivel extends EstadoJuego {
 
-    private static final int CANTIDAD_TIEMPO = 10;
+    private static final long CANTIDAD_TIEMPO = 100000;
 
     private FondoNegroConTexto fondoNegroConTexto;
 
@@ -24,10 +26,13 @@ public abstract class Nivel extends EstadoJuego {
     Jugador jugador;
     Fondo fondo;
 
-    private int tiempo;
+    private long tiempo;
     private boolean nivelIniciado;
     private long tiempoIniciado;
+    private long tiempoPausado;
     private int nivel;
+
+    private boolean pausado;
 
     Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa, int nivel) {
 
@@ -55,15 +60,25 @@ public abstract class Nivel extends EstadoJuego {
             return;
         }
 
-        if (nivelIniciado) {
-            long transcurrido = (System.currentTimeMillis() - tiempoIniciado) / 1000;
-            tiempo = (int) (CANTIDAD_TIEMPO - transcurrido);
-        } else {
-            tiempoIniciado = System.currentTimeMillis();
+        long tiempoActual = System.currentTimeMillis();
+
+        if (!nivelIniciado) {
+            tiempoIniciado = tiempoActual;
             nivelIniciado = true;
+            return;
         }
 
-        if (tiempo == 0) {
+        long transcurrido;
+        if (pausado) {
+            transcurrido = CANTIDAD_TIEMPO - tiempoPausado;
+            tiempoIniciado = tiempoActual - transcurrido;
+        } else {
+            transcurrido = tiempoActual - tiempoIniciado;
+        }
+
+        tiempo = CANTIDAD_TIEMPO - transcurrido;
+
+        if (tiempo <= 0) {
             tiempo = CANTIDAD_TIEMPO;
             jugador.disminuirVida();
             nivelIniciado = false;
@@ -76,7 +91,10 @@ public abstract class Nivel extends EstadoJuego {
         }
 
         manejarEntrada();
-        jugador.actualizar();
+        if (!pausado) {
+            jugador.actualizar();
+
+        }
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - jugador.getAncho()),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
     }
@@ -96,12 +114,22 @@ public abstract class Nivel extends EstadoJuego {
         Font font = new Font("Showcard Gothic", Font.PLAIN, 15);
         g.setFont(font);
         g.drawString("Nivel: " + nivel, 10, 20);
-        g.drawString("Tiempo: " + tiempo, 10, 40);
+        g.drawString("Tiempo: " + (int) Math.ceil((double) tiempo / 1000), 10, 40);
         g.drawString("Vidas: " + jugador.getCantidadVidas(), 10, 60);
+
+        if (pausado) {
+            font = new Font("Showcard Gothic", Font.PLAIN, 40);
+            FondoNegroConTexto.dibujarTextoCentrado(g, "PAUSADO", new Rectangle(ANCHO, ALTO), font);
+        }
     }
 
-    private void manejarEntrada(){
+    private void manejarEntrada() {
         jugador.manejarEntrada();
+        if (Teclado.esPresionado(Teclado.ESCAPE)) {
+            pausado = !pausado;
+            tiempoPausado = tiempo;
+        }
+
     }
 
 }
