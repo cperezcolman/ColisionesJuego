@@ -12,41 +12,34 @@ import static main.PanelJuego.ANCHO;
 
 public class GameOver extends EstadoJuego {
 
-    private int seleccionActual;
-    private String[] opciones = {"Si", "No"};
+    private ListaOpciones listaOpciones;
 
     public GameOver(ManejadorJuego manejadorJuego) {
         super(manejadorJuego);
+        Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
+        String[] opciones = {"Si", "No"};
+        listaOpciones = new ListaOpciones(opciones, font, 320, 20);
     }
 
     @Override
     public void actualizar() {
 
-        if (Teclado.estado[Teclado.ENTER]) {
+        listaOpciones.actualizar();
+
+        if (listaOpciones.isEnterApretado()) {
             seleccionar();
-        }
-        if (Teclado.esPresionado(Teclado.ARRIBA)) {
-            if (seleccionActual > 0) {
-                seleccionActual--;
-            } else {
-                seleccionActual = opciones.length - 1;
-            }
-        }
-        if (Teclado.esPresionado(Teclado.ABAJO)) {
-            if (seleccionActual < opciones.length - 1) {
-                seleccionActual++;
-            } else {
-                seleccionActual = 0;
-            }
         }
     }
 
     private void seleccionar() {
-        if (seleccionActual == 0) {
+
+        int opcionSeleccionada = listaOpciones.getSeleccionActual();
+
+        if (opcionSeleccionada == 0) {
             EstadoJugador.iniciar();
             Nivel nivel1 = new Nivel1(manejadorJuego);
             manejadorJuego.establecerEstado(nivel1);
-        } else if (seleccionActual == 1) {
+        } else if (opcionSeleccionada == 1) {
             System.exit(0);
         }
 
@@ -71,17 +64,6 @@ public class GameOver extends EstadoJuego {
         g.setColor(Color.WHITE);
         FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, "¿Jugar de Nuevo?", font, ANCHO, 300);
 
-        int posicionY = 320;
-
-        for (int i = 0; i < opciones.length; i++) {
-            String opcion = opciones[i];
-            if (seleccionActual == i) {
-                g.setColor(Color.WHITE);
-            } else {
-                g.setColor(Color.GRAY);
-            }
-
-            FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, opcion, font, ANCHO, posicionY += 20);
-        }
+        listaOpciones.dibujar(g);
     }
 }

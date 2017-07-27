@@ -12,40 +12,33 @@ import static main.PanelJuego.ANCHO;
 
 public class PantallaInicio extends EstadoJuego {
 
-    private int seleccionActual;
-    private String[] opciones = {"Jugar", "Tutorial", "Salir"};
+    private ListaOpciones listaOpciones;
 
     PantallaInicio(ManejadorJuego manejadorJuego) {
         super(manejadorJuego);
-        seleccionActual = 0;
+        Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
+        String[] opciones = {"Jugar", "Tutorial", "Salir"};
+        listaOpciones = new ListaOpciones(opciones, font, 300, 40);
     }
 
     @Override
     public void actualizar() {
-        if (Teclado.estado[Teclado.ENTER]) {
+        listaOpciones.actualizar();
+
+        if (listaOpciones.isEnterApretado()) {
             seleccionar();
         }
-        if (Teclado.esPresionado(Teclado.ARRIBA)) {
-            if (seleccionActual > 0) {
-                seleccionActual--;
-            } else {
-                seleccionActual = opciones.length - 1;
-            }
-        }
-        if (Teclado.esPresionado(Teclado.ABAJO)) {
-            if (seleccionActual < opciones.length - 1) {
-                seleccionActual++;
-            } else {
-                seleccionActual = 0;
-            }
-        }
+
     }
 
     private void seleccionar() {
-        if (seleccionActual == 0) {
+
+        int opcionSeleccionada = listaOpciones.getSeleccionActual();
+
+        if (opcionSeleccionada == 0) {
             Nivel nivel1 = new Nivel1(manejadorJuego);
             manejadorJuego.establecerEstado(nivel1);
-        } else if (seleccionActual == 2) {
+        } else if (opcionSeleccionada == 2) {
             System.exit(0);
         }
 
@@ -63,19 +56,6 @@ public class PantallaInicio extends EstadoJuego {
     }
 
     private void dibujarOpciones(Graphics2D g) {
-
-        Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
-        int posicionY = 300;
-
-        for (int i = 0; i < opciones.length; i++) {
-            String opcion = opciones[i];
-            if (seleccionActual == i) {
-                g.setColor(Color.WHITE);
-            } else {
-                g.setColor(Color.GRAY);
-            }
-
-            FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, opcion, font, ANCHO, posicionY += 40);
-        }
+        listaOpciones.dibujar(g);
     }
 }
