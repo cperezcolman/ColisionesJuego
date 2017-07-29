@@ -39,7 +39,8 @@ public class GameOver extends EstadoJuego {
             Nivel nivel1 = new Nivel1(manejadorJuego);
             manejadorJuego.establecerEstado(nivel1);
         } else if (opcionSeleccionada == 1) {
-            System.exit(0);
+            PantallaInicio pantallaInicio = new PantallaInicio(manejadorJuego);
+            manejadorJuego.establecerEstado(pantallaInicio);
         }
 
     }
