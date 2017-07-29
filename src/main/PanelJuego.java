@@ -1,7 +1,8 @@
 package main;
 
-import manejador.Teclado;
 import estado.ManejadorJuego;
+import estado.PantallaInicio;
+import manejador.Teclado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +21,10 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
 
     public static final int ANCHO = 640;
     public static final int ALTO = 480;
-    private static final int ANCHO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().width;
-    private static final int ALTO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().height;
-//    private static final int ANCHO_VENTANA = ANCHO;
-//    private static final int ALTO_VENTANA = ALTO;
+    //    private static final int ANCHO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().width;
+//    private static final int ALTO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().height;
+    private static final int ANCHO_VENTANA = ANCHO;
+    private static final int ALTO_VENTANA = ALTO;
 
     private static final int FPS = 60;
 
@@ -32,7 +33,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
     private BufferedImage imagen;
     private Graphics2D grafico;
 
-    private ManejadorJuego manejadorNivelesJuego;
+    public ManejadorJuego manejadorJuegoJuego;
 
     PanelJuego() {
 
@@ -46,7 +47,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
     }
 
     @Override
-    public void focusLost(FocusEvent fe){
+    public void focusLost(FocusEvent fe) {
         focoPerdido = true;
         Teclado.forzarKeyReleased();
     }
@@ -75,7 +76,8 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
         imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
         grafico = (Graphics2D) imagen.getGraphics();
 
-        manejadorNivelesJuego = new ManejadorJuego();
+        manejadorJuegoJuego = ManejadorJuego.getInstance();
+        manejadorJuegoJuego.establecerEstado(new PantallaInicio());
 
         long retraso = 1000 / FPS;
 
@@ -111,11 +113,11 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
     }
 
     private void actualizar() {
-        manejadorNivelesJuego.actualizar();
+        manejadorJuegoJuego.actualizar();
     }
 
     private void dibujar() {
-        manejadorNivelesJuego.dibujar(grafico);
+        manejadorJuegoJuego.dibujar(grafico);
     }
 
     private void mostrarEnPantalla() {

@@ -13,8 +13,8 @@ public class PantallaInicio extends EstadoJuego {
 
     private ListaOpciones listaOpciones;
 
-    public PantallaInicio(ManejadorJuego manejadorJuego) {
-        super(manejadorJuego);
+    public PantallaInicio() {
+        super();
         Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
         String[] opciones = {"Jugar", "Tutorial", "Salir"};
         listaOpciones = new ListaOpciones(opciones, font, 300, 40);
@@ -35,8 +35,8 @@ public class PantallaInicio extends EstadoJuego {
         int opcionSeleccionada = listaOpciones.getSeleccionActual();
 
         if (opcionSeleccionada == 0) {
-            Nivel nivel1 = new Nivel1(manejadorJuego);
-            manejadorJuego.establecerEstado(nivel1);
+            Nivel nivel1 = new Nivel1();
+            manejadorJuegoJuego.establecerEstado(nivel1);
         } else if (opcionSeleccionada == 2) {
             System.exit(0);
         }
@@ -50,7 +50,7 @@ public class PantallaInicio extends EstadoJuego {
         g.setColor(Color.GREEN);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 40);
         g.setFont(font);
-        FondoNegroConTexto.dibujarTextoCentrado(g, "C o l i s i o n e s", new Rectangle(ANCHO, ALTO), font);
+        FondoNegroConTexto.dibujarTextoCentrado(g, "C o l i s i o n e s", ANCHO, ALTO, font);
         dibujarOpciones(g);
     }
 

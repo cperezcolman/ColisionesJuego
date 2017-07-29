@@ -5,8 +5,8 @@ import estado.*;
 import main.PanelJuego;
 import manejador.Teclado;
 import mundo.Fondo;
-import mundo.Mundo;
 import mundo.FondoNegroConTexto;
+import mundo.Mundo;
 
 import java.awt.*;
 
@@ -15,7 +15,7 @@ import static main.PanelJuego.ANCHO;
 
 public abstract class Nivel extends EstadoJuego {
 
-    private static final long CANTIDAD_TIEMPO = 100000;
+    private static final long CANTIDAD_TIEMPO = 10000;
 
     private FondoNegroConTexto fondoNegroConTexto;
     private ListaOpciones listaOpciones;
@@ -31,9 +31,9 @@ public abstract class Nivel extends EstadoJuego {
 
     private boolean pausado;
 
-    Nivel(ManejadorJuego manejadorJuego, String ubicacionMapa, int nivel) {
+    Nivel(String ubicacionMapa, int nivel) {
 
-        super(manejadorJuego);
+        super();
 
         this.nivel = nivel;
 
@@ -103,7 +103,7 @@ public abstract class Nivel extends EstadoJuego {
                 }
 
                 if (jugador.getCantidadVidas() == 0) {
-                    manejadorJuego.establecerEstado(new GameOver(manejadorJuego));
+                    manejadorJuegoJuego.establecerEstado(new GameOver());
                 }
             }
         }
@@ -119,8 +119,8 @@ public abstract class Nivel extends EstadoJuego {
         if (opcionSeleccionada == 0) {
             pausado = false;
         } else if (opcionSeleccionada == 1) {
-            PantallaInicio pantallaInicio = new PantallaInicio(manejadorJuego);
-            manejadorJuego.establecerEstado(pantallaInicio);
+            PantallaInicio pantallaInicio = new PantallaInicio();
+            manejadorJuegoJuego.establecerEstado(pantallaInicio);
         }
 
     }
@@ -146,7 +146,7 @@ public abstract class Nivel extends EstadoJuego {
 
         if (pausado) {
             font = new Font("Showcard Gothic", Font.PLAIN, 40);
-            FondoNegroConTexto.dibujarTextoCentrado(g, "PAUSADO", new Rectangle(ANCHO, ALTO), font);
+            FondoNegroConTexto.dibujarTextoCentrado(g, "PAUSADO", ANCHO, ALTO, font);
             listaOpciones.dibujar(g);
         }
     }

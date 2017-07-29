@@ -1,14 +1,13 @@
 package estado.nivel;
 
 import estado.EstadoJugador;
-import estado.ManejadorJuego;
 
 import java.awt.*;
 
 public class Nivel1 extends Nivel {
 
-    public Nivel1(ManejadorJuego manejadorJuego) {
-        super(manejadorJuego, "recursos/nivel1.map", 1);
+    public Nivel1() {
+        super("recursos/nivel1.map", 1);
     }
 
     @Override
@@ -18,8 +17,8 @@ public class Nivel1 extends Nivel {
 
         if (jugador.llegoAlFinal()) {
             EstadoJugador.setCantidadVidas(jugador.getCantidadVidas());
-            Nivel nivel2 = new Nivel2(manejadorJuego);
-            manejadorJuego.establecerEstado(nivel2);
+            Nivel nivel2 = new Nivel2();
+            manejadorJuegoJuego.establecerEstado(nivel2);
         }
     }
 

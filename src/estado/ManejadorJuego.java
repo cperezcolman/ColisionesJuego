@@ -6,11 +6,15 @@ import java.awt.*;
 
 public class ManejadorJuego {
 
+    private static ManejadorJuego ourInstance = new ManejadorJuego();
     private EstadoJuego estadoJuego;
 
-    public ManejadorJuego() {
+    public static ManejadorJuego getInstance() {
+        return ourInstance;
+    }
+
+    private ManejadorJuego() {
         EstadoJugador.iniciar();
-        estadoJuego = new PantallaInicio(this);
     }
 
     public void establecerEstado(EstadoJuego nuevoEstado) {

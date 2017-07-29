@@ -4,10 +4,10 @@ import java.awt.*;
 
 public abstract class EstadoJuego {
 
-    protected ManejadorJuego manejadorJuego;
+    protected ManejadorJuego manejadorJuegoJuego;
 
-    protected EstadoJuego(ManejadorJuego manejadorJuego) {
-        this.manejadorJuego = manejadorJuego;
+    protected EstadoJuego() {
+        this.manejadorJuegoJuego = ManejadorJuego.getInstance();
     }
 
     public abstract void actualizar();

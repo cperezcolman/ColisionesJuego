@@ -5,7 +5,7 @@ import java.awt.*;
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
-public class FondoNegroConTexto extends Fondo{
+public class FondoNegroConTexto extends Fondo {
 
     private long duracion;
     private boolean iniciada;
@@ -16,15 +16,6 @@ public class FondoNegroConTexto extends Fondo{
 
     public FondoNegroConTexto(long duracion, String texto, int tamano) {
         this.duracion = duracion;
-        iniciada = false;
-        termino = false;
-        color = Color.BLACK;
-        this.texto = texto;
-        this.tamano = tamano;
-    }
-
-    public FondoNegroConTexto(String texto, int tamano) {
-        this.duracion = 0;
         iniciada = false;
         termino = false;
         color = Color.BLACK;
@@ -51,19 +42,17 @@ public class FondoNegroConTexto extends Fondo{
         super.dibujar(g);
         Font font = new Font("Showcard Gothic", Font.PLAIN, tamano);
         g.setColor(Color.WHITE);
-        dibujarTextoCentrado(g, texto, new Rectangle(ANCHO, ALTO), font);
+        dibujarTextoCentrado(g, texto, ANCHO, ALTO, font);
     }
 
     public boolean yaTermino() {
         return termino;
     }
 
-    public static void dibujarTextoCentrado(Graphics g, String text, Rectangle rect, Font font) {
+    public static void dibujarTextoCentrado(Graphics g, String text, int ancho, int alto, Font font) {
         FontMetrics metrics = g.getFontMetrics(font);
-        int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
-        int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
-        g.setFont(font);
-        g.drawString(text, x, y);
+        int y = ((alto - metrics.getHeight()) / 2) + metrics.getAscent();
+        dibujarTextoCentradoHorizontalmente(g, text, font, ancho, y);
     }
 
     public static void dibujarTextoCentradoHorizontalmente(Graphics g, String text, Font font, int ancho, int y) {

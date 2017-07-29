@@ -13,8 +13,8 @@ public class GameOver extends EstadoJuego {
 
     private ListaOpciones listaOpciones;
 
-    public GameOver(ManejadorJuego manejadorJuego) {
-        super(manejadorJuego);
+    public GameOver() {
+        super();
         Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
         String[] opciones = {"Si", "No"};
         listaOpciones = new ListaOpciones(opciones, font, 320, 20);
@@ -36,11 +36,11 @@ public class GameOver extends EstadoJuego {
 
         if (opcionSeleccionada == 0) {
             EstadoJugador.iniciar();
-            Nivel nivel1 = new Nivel1(manejadorJuego);
-            manejadorJuego.establecerEstado(nivel1);
+            Nivel nivel1 = new Nivel1();
+            manejadorJuegoJuego.establecerEstado(nivel1);
         } else if (opcionSeleccionada == 1) {
-            PantallaInicio pantallaInicio = new PantallaInicio(manejadorJuego);
-            manejadorJuego.establecerEstado(pantallaInicio);
+            PantallaInicio pantallaInicio = new PantallaInicio();
+            manejadorJuegoJuego.establecerEstado(pantallaInicio);
         }
 
     }
@@ -52,7 +52,7 @@ public class GameOver extends EstadoJuego {
         g.setColor(Color.GREEN);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 40);
         g.setFont(font);
-        FondoNegroConTexto.dibujarTextoCentrado(g, "Game Over", new Rectangle(ANCHO, ALTO), font);
+        FondoNegroConTexto.dibujarTextoCentrado(g, "Game Over", ANCHO, ALTO, font);
 
         dibujarOpciones(g);
     }
