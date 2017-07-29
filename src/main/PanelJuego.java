@@ -33,7 +33,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
     private BufferedImage imagen;
     private Graphics2D grafico;
 
-    public ManejadorJuego manejadorJuegoJuego;
+    private ManejadorJuego manejadorJuegoJuego;
 
     PanelJuego() {
 
