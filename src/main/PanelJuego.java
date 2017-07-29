@@ -5,22 +5,25 @@ import estado.ManejadorJuego;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Carlos Perez
  */
-public class PanelJuego extends JPanel implements Runnable, KeyListener {
+public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusListener {
+
+    public static boolean focoPerdido = false;
 
     public static final int ANCHO = 640;
     public static final int ALTO = 480;
     private static final int ANCHO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().width;
     private static final int ALTO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().height;
+//    private static final int ANCHO_VENTANA = ANCHO;
+//    private static final int ALTO_VENTANA = ALTO;
 
     private static final int FPS = 60;
 
@@ -43,12 +46,24 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
     }
 
     @Override
+    public void focusLost(FocusEvent fe){
+        focoPerdido = true;
+        Teclado.forzarKeyReleased();
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        focoPerdido = false;
+    }
+
+    @Override
     public void addNotify() {
         super.addNotify();
 
         if (hilo == null) {
             hilo = new Thread(this);
             addKeyListener(this);
+            addFocusListener(this);
             hilo.start();
         }
 
@@ -125,4 +140,5 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener {
         int k = e.getKeyCode();
         Teclado.establecerEstado(k, false);
     }
+
 }

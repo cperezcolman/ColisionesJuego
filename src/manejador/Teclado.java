@@ -58,4 +58,10 @@ public class Teclado {
         return false;
     }
 
+    public static void forzarKeyReleased() {
+        for (int i = 0; i < CANTIDAD_TECLAS; i++) {
+            estado[i] = false;
+        }
+    }
+
 }

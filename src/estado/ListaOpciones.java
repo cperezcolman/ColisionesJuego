@@ -21,11 +21,12 @@ public class ListaOpciones {
         this.fuente = fuente;
         this.yInicio = yInicio;
         this.separacion = separacion;
+
     }
 
     public void actualizar() {
 
-        opcionSeleccionada = Teclado.estado[Teclado.ENTER];
+        opcionSeleccionada = Teclado.esPresionado(Teclado.ENTER);
 
         if (Teclado.esPresionado(Teclado.ARRIBA)) {
             if (seleccionActual > 0) {

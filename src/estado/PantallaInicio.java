@@ -13,7 +13,7 @@ public class PantallaInicio extends EstadoJuego {
 
     private ListaOpciones listaOpciones;
 
-    PantallaInicio(ManejadorJuego manejadorJuego) {
+    public PantallaInicio(ManejadorJuego manejadorJuego) {
         super(manejadorJuego);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
         String[] opciones = {"Jugar", "Tutorial", "Salir"};
