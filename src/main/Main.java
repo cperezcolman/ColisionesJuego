@@ -13,6 +13,7 @@ public class Main {
         ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setContentPane(new PanelJuego());
+        ventana.setUndecorated(true);
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);

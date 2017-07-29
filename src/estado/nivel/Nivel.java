@@ -9,7 +9,6 @@ import manejador.Teclado;
 import mundo.Fondo;
 import mundo.Mundo;
 import mundo.FondoNegroConTexto;
-import sun.awt.SunToolkit;
 
 import java.awt.*;
 
@@ -29,7 +28,6 @@ public abstract class Nivel extends EstadoJuego {
     private long tiempo;
     private boolean nivelIniciado;
     private long tiempoIniciado;
-    private long tiempoPausado;
     private int nivel;
 
     private boolean pausado;
@@ -57,44 +55,41 @@ public abstract class Nivel extends EstadoJuego {
 
         if (!fondoNegroConTexto.yaTermino()) {
             fondoNegroConTexto.actualizar();
-            return;
-        }
-
-        long tiempoActual = System.currentTimeMillis();
-
-        if (!nivelIniciado) {
-            tiempoIniciado = tiempoActual;
+        } else if (!nivelIniciado) {
+            tiempoIniciado = System.currentTimeMillis();
             nivelIniciado = true;
-            return;
-        }
-
-        long transcurrido;
-        if (pausado) {
-            transcurrido = CANTIDAD_TIEMPO - tiempoPausado;
-            tiempoIniciado = tiempoActual - transcurrido;
         } else {
-            transcurrido = tiempoActual - tiempoIniciado;
+            long tiempoTranscurrido;
+
+            if (pausado) {
+                tiempoTranscurrido = CANTIDAD_TIEMPO - tiempo;
+                tiempoIniciado = System.currentTimeMillis() - tiempoTranscurrido;
+            } else {
+                tiempoTranscurrido = System.currentTimeMillis() - tiempoIniciado;
+            }
+
+            tiempo = CANTIDAD_TIEMPO - tiempoTranscurrido;
+
+            if (tiempo <= 0) {
+                tiempo = CANTIDAD_TIEMPO;
+                jugador.disminuirVida();
+                nivelIniciado = false;
+                jugador.establecerPosicion(0, 0);
+                jugador.pararVelocidadX();
+                fondoNegroConTexto.reiniciar();
+            }
+
+            if (jugador.getCantidadVidas() == 0) {
+                manejadorJuego.establecerEstado(new GameOver(manejadorJuego));
+            }
+
+            manejarEntrada();
+
+            if (!pausado) {
+                jugador.actualizar();
+            }
         }
 
-        tiempo = CANTIDAD_TIEMPO - transcurrido;
-
-        if (tiempo <= 0) {
-            tiempo = CANTIDAD_TIEMPO;
-            jugador.disminuirVida();
-            nivelIniciado = false;
-            jugador.establecerPosicion(0, 0);
-            fondoNegroConTexto.reiniciar();
-        }
-
-        if (jugador.getCantidadVidas() == 0) {
-            manejadorJuego.establecerEstado(new GameOver(manejadorJuego));
-        }
-
-        manejarEntrada();
-        if (!pausado) {
-            jugador.actualizar();
-
-        }
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - jugador.getAncho()),
                 (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
     }
@@ -127,7 +122,6 @@ public abstract class Nivel extends EstadoJuego {
         jugador.manejarEntrada();
         if (Teclado.esPresionado(Teclado.ESCAPE)) {
             pausado = !pausado;
-            tiempoPausado = tiempo;
         }
 
     }

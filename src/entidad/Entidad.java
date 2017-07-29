@@ -177,4 +177,8 @@ public class Entidad extends EntidadBasica {
     public boolean llegoAlFinal() {
         return (x + ancho) >= (mundo.getBloques()[0].length * Bloque.TAMANO);
     }
+
+    public void pararVelocidadX() {
+        velocidadX = 0;
+    }
 }

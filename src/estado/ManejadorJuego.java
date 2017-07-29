@@ -1,5 +1,7 @@
 package estado;
 
+import manejador.Teclado;
+
 import java.awt.*;
 
 public class ManejadorJuego {
@@ -17,6 +19,7 @@ public class ManejadorJuego {
 
     public void actualizar() {
         estadoJuego.actualizar();
+        Teclado.actualizar();
     }
 
     public void dibujar(Graphics2D g) {
