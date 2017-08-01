@@ -8,6 +8,7 @@ import manejador.Teclado;
 import mundo.Mundo;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Jugador extends Entidad {
 
@@ -46,9 +47,9 @@ public class Jugador extends Entidad {
     }
 
     public void manejarEntrada() {
-        izquierda = Teclado.estado[Teclado.IZQUIERDA];
-        derecha = Teclado.estado[Teclado.DERECHA];
-        if (Teclado.estado[Teclado.ARRIBA]) {
+        izquierda = Teclado.getEstado(KeyEvent.VK_LEFT);
+        derecha = Teclado.getEstado(KeyEvent.VK_RIGHT);
+        if (Teclado.getEstado(KeyEvent.VK_UP)) {
             saltar();
         } else {
             pararSalto();

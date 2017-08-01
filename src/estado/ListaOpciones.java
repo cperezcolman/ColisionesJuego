@@ -4,6 +4,7 @@ import manejador.Teclado;
 import mundo.FondoNegroConTexto;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import static main.PanelJuego.ANCHO;
 
@@ -26,16 +27,17 @@ public class ListaOpciones {
 
     public void actualizar() {
 
-        opcionSeleccionada = Teclado.esPresionado(Teclado.ENTER);
+        opcionSeleccionada = Teclado.esPresionado(KeyEvent.VK_ENTER);
 
-        if (Teclado.esPresionado(Teclado.ARRIBA)) {
+        if (Teclado.esPresionado(KeyEvent.VK_UP)) {
             if (seleccionActual > 0) {
                 seleccionActual--;
             } else {
                 seleccionActual = opciones.length - 1;
             }
         }
-        if (Teclado.esPresionado(Teclado.ABAJO)) {
+
+        if (Teclado.esPresionado(KeyEvent.VK_DOWN)) {
             if (seleccionActual < opciones.length - 1) {
                 seleccionActual++;
             } else {

@@ -9,13 +9,14 @@ import mundo.FondoNegroConTexto;
 import mundo.Mundo;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import static main.PanelJuego.ALTO;
 import static main.PanelJuego.ANCHO;
 
 public abstract class Nivel extends EstadoJuego {
 
-    private static final long CANTIDAD_TIEMPO = 10000;
+    private static final long CANTIDAD_TIEMPO = 100000;
 
     private FondoNegroConTexto fondoNegroConTexto;
     private ListaOpciones listaOpciones;
@@ -109,7 +110,7 @@ public abstract class Nivel extends EstadoJuego {
         }
 
         mundo.establecerPosicion((int) (ANCHO / 2 - jugador.getX() - jugador.getAncho()),
-                (int) (ALTO / 2 - jugador.getY() - jugador.getAlto() / 2));
+                (int) (ALTO / 2 - jugador.getY() - jugador.getAlto()));
     }
 
     private void seleccionar() {
@@ -142,7 +143,6 @@ public abstract class Nivel extends EstadoJuego {
         g.drawString("Nivel: " + nivel, 10, 20);
         g.drawString("Tiempo: " + (int) Math.ceil((double) tiempo / 1000), 10, 40);
         g.drawString("Vidas: " + jugador.getCantidadVidas(), 10, 60);
-        g.drawString("Foco: " + PanelJuego.focoPerdido, 10, 80);
 
         if (pausado) {
             font = new Font("Showcard Gothic", Font.PLAIN, 40);
@@ -155,7 +155,7 @@ public abstract class Nivel extends EstadoJuego {
         if (!pausado) {
             jugador.manejarEntrada();
         }
-        if (Teclado.esPresionado(Teclado.ESCAPE)) {
+        if (Teclado.esPresionado(KeyEvent.VK_ESCAPE)) {
             pausado = !pausado;
         }
 

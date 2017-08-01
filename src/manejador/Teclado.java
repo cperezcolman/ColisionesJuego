@@ -1,67 +1,64 @@
 package manejador;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Teclado {
 
-    private static final int CANTIDAD_TECLAS = 6;
+    private static HashMap<Integer, Boolean> estado = new HashMap<>();
+    private static HashMap<Integer, Boolean> estadoPrevio = new HashMap<>();
 
-    public static boolean estado[] = new boolean[CANTIDAD_TECLAS];
-    private static boolean estadoPrevio[] = new boolean[CANTIDAD_TECLAS];
+    private static List<Integer> teclas = new ArrayList<>();
 
-    public static int ARRIBA = 0;
-    public static int ABAJO = 1;
-    public static int IZQUIERDA = 2;
-    public static int DERECHA = 3;
-    public static int ENTER = 4;
-    public static int ESCAPE = 5;
+    static {
+
+        teclas.add(KeyEvent.VK_UP);
+        teclas.add(KeyEvent.VK_DOWN);
+        teclas.add(KeyEvent.VK_RIGHT);
+        teclas.add(KeyEvent.VK_LEFT);
+        teclas.add(KeyEvent.VK_ENTER);
+        teclas.add(KeyEvent.VK_ESCAPE);
+
+        for (Integer tecla : teclas) {
+            estado.put(tecla, false);
+        }
+
+        estadoPrevio.putAll(estado);
+    }
 
     public static void establecerEstado(int i, boolean b) {
-        switch (i) {
-            case KeyEvent.VK_UP:
-                estado[ARRIBA] = b;
-                break;
-            case KeyEvent.VK_DOWN:
-                estado[ABAJO] = b;
-                break;
-            case KeyEvent.VK_LEFT:
-                estado[IZQUIERDA] = b;
-                break;
-            case KeyEvent.VK_RIGHT:
-                estado[DERECHA] = b;
-                break;
-            case KeyEvent.VK_ENTER:
-                estado[ENTER] = b;
-                break;
-            case KeyEvent.VK_ESCAPE:
-                estado[ESCAPE] = b;
-                break;
+        if (estado.containsKey(i)) {
+            estado.put(i, b);
         }
     }
 
     public static void actualizar() {
-        for (int i = 0; i < CANTIDAD_TECLAS; i++) {
-            estadoPrevio[i] = estado[i];
-        }
+        estadoPrevio.putAll(estado);
     }
 
     public static boolean esPresionado(int i) {
-        return estado[i] && !estadoPrevio[i];
+        return estado.get(i) && !estadoPrevio.get(i);
+    }
+
+    public static void forzarKeyReleased() {
+        for (Integer tecla : teclas) {
+            estado.put(tecla, false);
+        }
     }
 
     public static boolean sePresionaCualquierTecla() {
-        for (int i = 0; i < CANTIDAD_TECLAS; i++) {
-            if (estado[i]) {
+        for (Integer tecla : teclas) {
+            if (estado.get(tecla)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static void forzarKeyReleased() {
-        for (int i = 0; i < CANTIDAD_TECLAS; i++) {
-            estado[i] = false;
-        }
+    public static boolean getEstado(int i) {
+        return estado.get(i);
     }
 
 }
