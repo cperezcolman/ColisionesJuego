@@ -10,7 +10,7 @@ import mundo.Mundo;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Jugador extends Entidad {
+public class Jugador extends EntidadBasica {
 
     private static final double VELOCIDAD_SALTO = -12.0;
     private int cantidadVidas;
