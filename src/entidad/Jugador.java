@@ -1,15 +1,14 @@
 package entidad;
 
-/**
- * @author Carlos Perez
- */
-
 import manejador.Teclado;
 import mundo.Mundo;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * @author Carlos Perez
+ */
 public class Jugador extends EntidadBasica {
 
     private static final double VELOCIDAD_SALTO = -12.0;

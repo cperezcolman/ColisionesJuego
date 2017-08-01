@@ -2,6 +2,7 @@ package estado;
 
 import manejador.Teclado;
 import mundo.FondoNegroConTexto;
+import util.Util;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -60,7 +61,7 @@ public class ListaOpciones {
                 g.setColor(Color.GRAY);
             }
 
-            FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, opcion, fuente, ANCHO, posicionY += separacion);
+            Util.dibujarTextoCentradoHorizontalmente(g, opcion, fuente, ANCHO, posicionY += separacion);
         }
     }
 

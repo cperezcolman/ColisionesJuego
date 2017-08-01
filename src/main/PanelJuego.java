@@ -49,7 +49,6 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
     @Override
     public void focusLost(FocusEvent fe) {
         focoPerdido = true;
-//        Teclado.forzarKeyReleased();
         Teclado.forzarKeyReleased();
     }
 

@@ -3,6 +3,7 @@ package estado;
 import estado.nivel.Nivel;
 import estado.nivel.Nivel1;
 import mundo.FondoNegroConTexto;
+import util.Util;
 
 import java.awt.*;
 
@@ -50,7 +51,7 @@ public class PantallaInicio extends EstadoJuego {
         g.setColor(Color.GREEN);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 40);
         g.setFont(font);
-        FondoNegroConTexto.dibujarTextoCentrado(g, "C o l i s i o n e s", ANCHO, ALTO, font);
+        Util.dibujarTextoCentrado(g, "C o l i s i o n e s", ANCHO, ALTO, font);
         dibujarOpciones(g);
     }
 

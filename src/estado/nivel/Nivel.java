@@ -7,6 +7,7 @@ import manejador.Teclado;
 import mundo.Fondo;
 import mundo.FondoNegroConTexto;
 import mundo.Mundo;
+import util.Util;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -19,7 +20,7 @@ public abstract class Nivel extends EstadoJuego {
     private static final long CANTIDAD_TIEMPO = 100000;
 
     private FondoNegroConTexto fondoNegroConTexto;
-    private ListaOpciones listaOpciones;
+    private ListaOpciones listaOpcionesPausa;
 
     private Mundo mundo;
     Jugador jugador;
@@ -52,7 +53,7 @@ public abstract class Nivel extends EstadoJuego {
 
         Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
         String[] opciones = {"Continuar", "Volver a Pantalla de Inicio"};
-        listaOpciones = new ListaOpciones(opciones, font, 300, 40);
+        listaOpcionesPausa = new ListaOpciones(opciones, font, 300, 40);
     }
 
     public void actualizar() {
@@ -82,9 +83,9 @@ public abstract class Nivel extends EstadoJuego {
                 tiempoTranscurrido = CANTIDAD_TIEMPO - tiempo;
                 tiempoIniciado = System.currentTimeMillis() - tiempoTranscurrido;
 
-                listaOpciones.actualizar();
+                listaOpcionesPausa.actualizar();
 
-                if (listaOpciones.isOpcionSeleccionada()) {
+                if (listaOpcionesPausa.isOpcionSeleccionada()) {
                     seleccionar();
                 }
 
@@ -115,7 +116,7 @@ public abstract class Nivel extends EstadoJuego {
 
     private void seleccionar() {
 
-        int opcionSeleccionada = listaOpciones.getSeleccionActual();
+        int opcionSeleccionada = listaOpcionesPausa.getSeleccionActual();
 
         if (opcionSeleccionada == 0) {
             pausado = false;
@@ -146,8 +147,8 @@ public abstract class Nivel extends EstadoJuego {
 
         if (pausado) {
             font = new Font("Showcard Gothic", Font.PLAIN, 40);
-            FondoNegroConTexto.dibujarTextoCentrado(g, "PAUSADO", ANCHO, ALTO, font);
-            listaOpciones.dibujar(g);
+            Util.dibujarTextoCentrado(g, "PAUSADO", ANCHO, ALTO, font);
+            listaOpcionesPausa.dibujar(g);
         }
     }
 

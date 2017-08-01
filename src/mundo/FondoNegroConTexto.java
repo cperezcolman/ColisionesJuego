@@ -1,5 +1,7 @@
 package mundo;
 
+import util.Util;
+
 import java.awt.*;
 
 import static main.PanelJuego.ALTO;
@@ -42,24 +44,11 @@ public class FondoNegroConTexto extends Fondo {
         super.dibujar(g);
         Font font = new Font("Showcard Gothic", Font.PLAIN, tamano);
         g.setColor(Color.WHITE);
-        dibujarTextoCentrado(g, texto, ANCHO, ALTO, font);
+        Util.dibujarTextoCentrado(g, texto, ANCHO, ALTO, font);
     }
 
     public boolean yaTermino() {
         return termino;
-    }
-
-    public static void dibujarTextoCentrado(Graphics g, String text, int ancho, int alto, Font font) {
-        FontMetrics metrics = g.getFontMetrics(font);
-        int y = ((alto - metrics.getHeight()) / 2) + metrics.getAscent();
-        dibujarTextoCentradoHorizontalmente(g, text, font, ancho, y);
-    }
-
-    public static void dibujarTextoCentradoHorizontalmente(Graphics g, String text, Font font, int ancho, int y) {
-        FontMetrics metrics = g.getFontMetrics(font);
-        int x = (ancho - metrics.stringWidth(text)) / 2;
-        g.setFont(font);
-        g.drawString(text, x, y);
     }
 
     public void reiniciar() {

@@ -3,6 +3,7 @@ package estado;
 import estado.nivel.Nivel;
 import estado.nivel.Nivel1;
 import mundo.FondoNegroConTexto;
+import util.Util;
 
 import java.awt.*;
 
@@ -52,7 +53,7 @@ public class GameOver extends EstadoJuego {
         g.setColor(Color.GREEN);
         Font font = new Font("Showcard Gothic", Font.PLAIN, 40);
         g.setFont(font);
-        FondoNegroConTexto.dibujarTextoCentrado(g, "Game Over", ANCHO, ALTO, font);
+        Util.dibujarTextoCentrado(g, "Game Over", ANCHO, ALTO, font);
 
         dibujarOpciones(g);
     }
@@ -62,7 +63,7 @@ public class GameOver extends EstadoJuego {
         Font font = new Font("Showcard Gothic", Font.PLAIN, 20);
 
         g.setColor(Color.WHITE);
-        FondoNegroConTexto.dibujarTextoCentradoHorizontalmente(g, "¿Jugar de Nuevo?", font, ANCHO, 300);
+        Util.dibujarTextoCentradoHorizontalmente(g, "¿Jugar de Nuevo?", font, ANCHO, 300);
 
         listaOpciones.dibujar(g);
     }
