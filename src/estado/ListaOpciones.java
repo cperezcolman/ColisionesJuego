@@ -1,7 +1,6 @@
 package estado;
 
 import manejador.Teclado;
-import mundo.FondoNegroConTexto;
 import util.Util;
 
 import java.awt.*;

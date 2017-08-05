@@ -47,7 +47,7 @@ public abstract class Nivel extends EstadoJuego {
 
         fondo = new Fondo();
         fondo.setColor(new Color(18, 65, 121));
-        fondoNegroConTexto = new FondoNegroConTexto(2000, "Nivel " + nivel, 30);
+        fondoNegroConTexto = new FondoNegroConTexto(1, "Nivel " + nivel, 30);
 
         tiempo = CANTIDAD_TIEMPO;
 
@@ -64,7 +64,7 @@ public abstract class Nivel extends EstadoJuego {
 
         long tiempoTranscurrido;
 
-        if (!fondoNegroConTexto.yaTermino()) {
+        if (fondoNegroConTexto.esVisible()) {
 
             fondoNegroConTexto.actualizar();
 
@@ -129,7 +129,7 @@ public abstract class Nivel extends EstadoJuego {
 
     public void dibujar(Graphics2D g) {
 
-        if (!fondoNegroConTexto.yaTermino()) {
+        if (fondoNegroConTexto.esVisible()) {
             fondoNegroConTexto.dibujar(g);
             return;
         }

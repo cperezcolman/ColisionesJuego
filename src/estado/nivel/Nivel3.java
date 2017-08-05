@@ -2,8 +2,6 @@ package estado.nivel;
 
 import estado.GameOver;
 
-import java.awt.*;
-
 public class Nivel3 extends Nivel {
 
     public Nivel3() {
@@ -16,11 +14,6 @@ public class Nivel3 extends Nivel {
         if (jugador.llegoAlFinal()) {
             manejadorJuegoJuego.establecerEstado(new GameOver());
         }
-    }
-
-    @Override
-    public void dibujar(Graphics2D g) {
-        super.dibujar(g);
     }
 
 }

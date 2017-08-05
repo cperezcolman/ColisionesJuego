@@ -78,7 +78,7 @@ public class Mundo {
                     bloques[i][j] = new Bloque();
                     bloques[i][j].setNumeroBloque(numeroBloque);
 
-                    if (numeroBloque > 0) {
+                    if (numeroBloque == 1) {
                         bloques[i][j].bloquear();
                     }
 
@@ -132,6 +132,7 @@ public class Mundo {
     public void dibujar(Graphics2D g) {
 
         int numeroBloque;
+        int xActual, yActual;
 
         for (int fila = columnaDesplazada; fila < columnaDesplazada + cantidadFilasADibujar; fila++) {
 
@@ -152,7 +153,28 @@ public class Mundo {
                 }
 
                 g.setColor(Color.GRAY);
-                g.drawRect(x + columna * Bloque.TAMANO, y + fila * Bloque.TAMANO, Bloque.TAMANO, Bloque.TAMANO);
+
+                xActual = x + columna * Bloque.TAMANO;
+                yActual = y + fila * Bloque.TAMANO;
+
+                if (numeroBloque == 1) {
+                    g.drawRect(xActual, yActual, Bloque.TAMANO, Bloque.TAMANO);
+                }
+
+                if (numeroBloque == 2) {
+                    g.drawLine(xActual + Bloque.TAMANO / 4, yActual + Bloque.TAMANO / 2,
+                            xActual, yActual + Bloque.TAMANO);
+                    g.drawLine(xActual + Bloque.TAMANO / 4, yActual + Bloque.TAMANO / 2,
+                            xActual + Bloque.TAMANO / 2, yActual + Bloque.TAMANO);
+
+                    g.drawLine(xActual + Bloque.TAMANO - Bloque.TAMANO / 4, yActual + Bloque.TAMANO / 2,
+                            xActual + Bloque.TAMANO / 2, yActual + Bloque.TAMANO);
+
+                    g.drawLine(xActual + Bloque.TAMANO - Bloque.TAMANO / 4, yActual + Bloque.TAMANO / 2,
+                            xActual + Bloque.TAMANO, yActual + Bloque.TAMANO);
+                }
+
+
             }
         }
 

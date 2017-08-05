@@ -12,14 +12,14 @@ public class FondoNegroConTexto extends Fondo {
     private long duracion;
     private boolean iniciada;
     private long tiempoInicio;
-    private boolean termino;
+    private boolean visible;
     private String texto;
     private int tamano;
 
     public FondoNegroConTexto(long duracion, String texto, int tamano) {
         this.duracion = duracion;
         iniciada = false;
-        termino = false;
+        visible = true;
         color = Color.BLACK;
         this.texto = texto;
         this.tamano = tamano;
@@ -34,7 +34,7 @@ public class FondoNegroConTexto extends Fondo {
         long transcurrido = (System.currentTimeMillis() - tiempoInicio);
 
         if (transcurrido >= duracion && duracion > 0) {
-            termino = true;
+            visible = false;
         }
 
     }
@@ -47,13 +47,13 @@ public class FondoNegroConTexto extends Fondo {
         Util.dibujarTextoCentrado(g, texto, ANCHO, ALTO, font);
     }
 
-    public boolean yaTermino() {
-        return termino;
+    public boolean esVisible() {
+        return visible;
     }
 
     public void reiniciar() {
         iniciada = false;
-        termino = false;
+        visible = true;
     }
 
 }

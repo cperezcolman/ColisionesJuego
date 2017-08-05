@@ -2,7 +2,6 @@ package estado;
 
 import estado.nivel.Nivel;
 import estado.nivel.Nivel1;
-import mundo.FondoNegroConTexto;
 import util.Util;
 
 import java.awt.*;

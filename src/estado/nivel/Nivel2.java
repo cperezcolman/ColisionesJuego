@@ -2,8 +2,6 @@ package estado.nivel;
 
 import estado.EstadoJugador;
 
-import java.awt.*;
-
 public class Nivel2 extends Nivel {
 
     public Nivel2() {
@@ -21,11 +19,6 @@ public class Nivel2 extends Nivel {
             Nivel nivel3 = new Nivel3();
             manejadorJuegoJuego.establecerEstado(nivel3);
         }
-    }
-
-    @Override
-    public void dibujar(Graphics2D g) {
-        super.dibujar(g);
     }
 
 }

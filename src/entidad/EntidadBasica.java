@@ -30,8 +30,6 @@ public class EntidadBasica extends Entidad {
     boolean enElPiso;
     private boolean mirandoHaciaLaDerecha;
 
-    Mundo mundo;
-
     public EntidadBasica(Mundo mundo) {
         this.mundo = mundo;
     }
@@ -51,12 +49,12 @@ public class EntidadBasica extends Entidad {
                 velocidadX = maximaVelocidad;
             }
         } else {
-            if (mirandoHaciaLaDerecha) {
+            if (velocidadX > 0) {
                 velocidadX -= aceleracion;
                 if (velocidadX < 0) {
                     velocidadX = 0;
                 }
-            } else {
+            } else if (velocidadX < 0){
                 velocidadX += aceleracion;
                 if (velocidadX > 0) {
                     velocidadX = 0;
@@ -158,6 +156,14 @@ public class EntidadBasica extends Entidad {
         }
     }
 
+    public boolean llegoAlFinal() {
+        return (x + ancho) >= (mundo.getBloques()[0].length * Bloque.TAMANO);
+    }
+
+    public void pararVelocidadX() {
+        velocidadX = 0;
+    }
+
     public double getX() {
         return x;
     }
@@ -172,13 +178,5 @@ public class EntidadBasica extends Entidad {
 
     public int getAlto() {
         return alto;
-    }
-
-    public boolean llegoAlFinal() {
-        return (x + ancho) >= (mundo.getBloques()[0].length * Bloque.TAMANO);
-    }
-
-    public void pararVelocidadX() {
-        velocidadX = 0;
     }
 }

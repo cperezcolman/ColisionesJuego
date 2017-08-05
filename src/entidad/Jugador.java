@@ -3,7 +3,6 @@ package entidad;
 import manejador.Teclado;
 import mundo.Mundo;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -53,19 +52,6 @@ public class Jugador extends EntidadBasica {
         } else {
             pararSalto();
         }
-    }
-
-    public void dibujar(Graphics2D g) {
-
-        g.setColor(Color.WHITE);
-        g.drawRect((int) (x + mundo.getX() + xColision),
-                (int) (y + mundo.getY() + yColision),
-                ancho - (ancho - anchoColision),
-                alto - (alto - altoColision));
-
-        g.setColor(Color.GREEN);
-        g.drawRect((int) (x + mundo.getX()), (int) (y + mundo.getY()), ancho, alto);
-
     }
 
     public void disminuirVida() {

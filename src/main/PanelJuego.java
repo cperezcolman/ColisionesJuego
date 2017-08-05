@@ -2,6 +2,7 @@ package main;
 
 import estado.ManejadorJuego;
 import estado.PantallaInicio;
+import estado.nivel.Nivel1;
 import manejador.Teclado;
 
 import javax.swing.*;
@@ -17,16 +18,16 @@ import java.awt.image.BufferedImage;
  */
 public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusListener {
 
-    public static boolean focoPerdido = false;
-
-    public static final int ANCHO = 640;
+    public static final int ANCHO = 800;
     public static final int ALTO = 480;
-    //    private static final int ANCHO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().width;
+//        private static final int ANCHO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().width;
 //    private static final int ALTO_VENTANA = Toolkit.getDefaultToolkit().getScreenSize().height;
     private static final int ANCHO_VENTANA = ANCHO;
     private static final int ALTO_VENTANA = ALTO;
 
     private static final int FPS = 60;
+
+    public static boolean focoPerdido = false;
 
     private Thread hilo;
 
@@ -77,7 +78,7 @@ public class PanelJuego extends JPanel implements Runnable, KeyListener, FocusLi
         grafico = (Graphics2D) imagen.getGraphics();
 
         manejadorJuegoJuego = ManejadorJuego.getInstance();
-        manejadorJuegoJuego.establecerEstado(new PantallaInicio());
+        manejadorJuegoJuego.establecerEstado(new Nivel1());
 
         long retraso = 1000 / FPS;
 
